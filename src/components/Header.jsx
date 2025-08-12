@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { CiMail } from "react-icons/ci";
 import { MdOutlinePhoneInTalk } from "react-icons/md";
 import { BsCart } from "react-icons/bs";
-import { FaChevronDown } from "react-icons/fa6";
-import { FaRegUser } from "react-icons/fa";
-import { BiHeartSquare } from "react-icons/bi";
+import { FaChevronDown, FaRegUser } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
-import lightimage from '../assets/images/lightimage.png';
 import { CiSearch } from "react-icons/ci";
-import banner from '../assets/images/banner.png';
+import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
+import { BannerData } from "../assets/mockdata";
+import SimpleSlider from "../pages/home/Slider";
+
 function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div>
-      <header >
-        <div className="bg-background hidden md:block text-[12px] h-[35px]">
-          <div className="container mx-auto flex justify-between text-white items-center py-2">
+      {/* Top Contact Bar */}
+      <header className="text-sm">
+        <div className="bg-background">
+          <div className="container px-4 py-2 flex flex-col gap-2 md:flex-row md:justify-between md:items-center text-white">
+            {/* Left contact info */}
             <div className="flex items-center gap-10">
               <div className="flex items-center gap-2 cursor-pointer ml-40">
                 <CiMail />
@@ -26,15 +30,14 @@ function Header() {
               </div>
               <div className="flex items-center gap-2">
                 <MdOutlinePhoneInTalk className="cursor-pointer" />
-                <a href="tel:+1234567890">
-                  {" "}
-                  <p>+977 9816413787</p>
-                </a>
+                <a href="tel:+1234567890"> +977 9816413787</a>
               </div>
             </div>
-            <div className="flex items-center gap-10 text-[12px] mr-4 md:mr-40">
-              <div className="flex items-center gap-2">
-                <div className="flex items-center gap-2">
+
+            {/* Right side actions */}
+            <div className="flex justify-between md:justify-end items-center gap-4 flex-wrap">
+              <div className="flex items-center gap-4 flex-wrap">
+                <div className="flex items-center gap-1 cursor-pointer">
                   <p>English</p>
                   <FaChevronDown />
                 </div>
@@ -43,7 +46,7 @@ function Header() {
                   <FaChevronDown />
                 </div>
 
-                  <Link
+                <Link
                   to="/login"
                   className="flex items-center gap-2 hover:text-pink-500 cursor-pointer"
                 >
@@ -57,78 +60,82 @@ function Header() {
                 </div>
               </div>
 
-              <div>
+              {/* Cart */}
+              <div className="relative h-[40px] w-[40px] md:h-[50px] md:w-[50px] flex items-center justify-center rounded cursor-pointer">
                 <BsCart />
+                <div className="absolute top-1 right-1 bg-red-500 text-white text-xs rounded-full h-4 aspect-square flex items-center justify-center">
+                  2
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <section className=" container  flex justify-between items-center  mx-auto h-[40px] ">
-          <div className="flex items-center gap-24">
-            <h1 className="text-[20px] font-bold ml-4 md:ml-40">Hekto</h1>
-            <nav className="flex items-center gap-5 list-none text-[12px]">
-              <li>Home</li>
-              <li>Products</li>
-              <li>Products</li>
-              <li>Blogs</li>
-              <li>Shop</li>
-              <li>Contact</li>
-            </nav>
+        {/* Main Navigation */}
+        <nav className="container mx-auto flex items-center justify-between py-4 px-4 bg-white text-black relative">
+          {/* Logo */}
+          <h1 className="text-[20px] font-bold ml-0 md:ml-[120px]">Hekto</h1>
+
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex gap-8 justify-center items-center flex-1 text-[12px]">
+            <li className="cursor-pointer">Home</li>
+            <li className="cursor-pointer">Products</li>
+            <li className="cursor-pointer">Blogs</li>
+            <li className="cursor-pointer">Shop</li>
+            <li className="cursor-pointer">Contact</li>
+          </ul>
+
+          {/* Search Bar - Desktop */}
+          <div className="hidden md:flex flex-1 justify-end items-center gap-0 max-w-xs">
+            <input
+              type="text"
+              className="border-2 px-2 h-8 focus:outline-none w-full"
+              placeholder=" "
+            />
+            <div className="bg-background h-8 flex items-center justify-center px-3 cursor-pointer">
+              <CiSearch color="white" size={20} />
+            </div>
           </div>
 
-          <div className="flex items-center mr-40">
-            <input 
-                type="text" 
-                className="border-2  px-2 h-8 focus:outline-none" 
-                placeholder=" "
-            />
-              <div className="bg-background h-8 flex items-center justify-center  px-3 cursor-pointer">
-                <CiSearch color="white"size={20} />
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-2xl"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Mobile Menu"
+          >
+            {mobileMenuOpen ? <HiX /> : <HiMenuAlt3 />}
+          </button>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="absolute top-full left-0 w-full bg-white text-black shadow-md md:hidden p-4 z-50">
+              <ul className="flex flex-col gap-4 text-center text-sm">
+                <li className="cursor-pointer">Home</li>
+                <li className="cursor-pointer">Products</li>
+                <li className="cursor-pointer">Blogs</li>
+                <li className="cursor-pointer">Shop</li>
+                <li className="cursor-pointer">Contact</li>
+              </ul>
+              <div className="flex mt-4 gap-2">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="border rounded px-2 py-1 w-full"
+                />
+                <button className="bg-background text-white px-3 py-1 rounded">
+                  <CiSearch />
+                </button>
+              </div>
             </div>
-            </div>
-        </section>
+          )}
+        </nav>
       </header>
 
-    <section className="bg-backgroundlite max-w-7xl mx-auto px-4 md:px-8">
-    <div className="maindiv p-0 m-0">
-        <div className="flex flex-col md:flex-row justify-start items-center md:items-start gap-6 md:gap-0">
-            <div className="px-4 md:px-24">
-                <img src={lightimage} alt="lightmage" className="w-full max-w-[220px] h-auto mt-0" /> 
-            </div>
-
-    <div className="subheader w-full md:w-[550px] py-8 md:py-[100px]">
-    <div className="py-[2px]">
-    <p className="text-[12px]">Best furniture For your Castle...</p>
+      {/* Banner Section with Slider */}
+      <section>
+        <SimpleSlider BannerData={BannerData} />
+      </section>
     </div>
-
-   <div className="text-[24px] md:text-[40px] font-bold">
-    <h1>New  Furniture  Collection </h1>
-    <h1>Trends  in  2020</h1>
-    </div>
-            
-    <div className="py-[15px]">
-    <p className="text-[12px]">Discover the finest furniture crafted to make your home a true castle. 
-    Explore our new collection featuring the latest trends of 2020 stylish, comfortable, 
-    and made just for you.
-    </p>
-    </div>
-
-    <div className="py-[25px]">
-    <button className="primary-btn px-4 py-2 text-sm md:text-base">Shop Now</button>
-    </div>
-         
-    </div>
-
-    <div className="sofaimage">
-    <img src={banner} alt="sofaimage" className="w-full max-w-[350px] h-auto" />  
-    </div>
-
-    </div>
-
-     </div>
-    </section>
-</div>
   );
 }
 
