@@ -31,5 +31,6 @@ export const BannerData = [
       "Don't miss our biggest sale! Upgrade your home with premium furniture at unbeatable prices.",
     leftImage: leftImage1,
     rightImage: rightImage1,
+    discount:"50% OFF"
   },
 ];

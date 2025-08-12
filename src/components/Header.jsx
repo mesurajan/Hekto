@@ -7,9 +7,8 @@ import { FaRegHeart } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import hetkologo from "../assets/images/logo.png"
 
-import { BannerData } from "../assets/mockdata";
-import SimpleSlider from "../pages/home/Slider";
 
 function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -22,7 +21,7 @@ function Header() {
           <div className="container px-4 py-2 flex flex-col gap-2 md:flex-row md:justify-between md:items-center text-white">
             {/* Left contact info */}
             <div className="flex items-center gap-10">
-              <div className="flex items-center gap-2 cursor-pointer ml-40">
+              <div className="flex items-center gap-2 cursor-pointer ">
                 <CiMail />
                 <a href="mailto:hetkofurniture@gmail.com">
                   <p>hetkofurniture@gmail.com</p>
@@ -63,9 +62,9 @@ function Header() {
               {/* Cart */}
               <div className="relative h-[40px] w-[40px] md:h-[50px] md:w-[50px] flex items-center justify-center rounded cursor-pointer">
                 <BsCart />
-                <div className="absolute top-1 right-1 bg-red-500 text-white text-xs rounded-full h-4 aspect-square flex items-center justify-center">
+                {/* <div className="absolute top-1 right-1 bg-red-500 text-white text-xs rounded-full h-4 aspect-square flex items-center justify-center">
                   2
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -74,7 +73,10 @@ function Header() {
         {/* Main Navigation */}
         <nav className="container mx-auto flex items-center justify-between py-4 px-4 bg-white text-black relative">
           {/* Logo */}
-          <h1 className="text-[20px] font-bold ml-0 md:ml-[120px]">Hekto</h1>
+         <h1 className="text-[20px] font-bold ml-0  flex items-center gap-2">
+            <img src={hetkologo} alt="Hekto logo" className="w-6 h-6" />
+            Hekto
+          </h1>
 
           {/* Desktop Menu */}
           <ul className="hidden md:flex gap-8 justify-center items-center flex-1 text-[12px]">
@@ -132,9 +134,9 @@ function Header() {
       </header>
 
       {/* Banner Section with Slider */}
-      <section>
+      {/* <section>
         <SimpleSlider BannerData={BannerData} />
-      </section>
+      </section> */}
     </div>
   );
 }

@@ -1,0 +1,112 @@
+import React, { useState, useRef } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+function SimpleSlider2({ BannerData }) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef(null);
+  const totalSlides = BannerData.length;
+
+  const settings = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    beforeChange: (_, next) => setCurrentSlide(next),
+    appendDots: () => {
+      const isFirst = currentSlide === 0;
+      const isLast = currentSlide === totalSlides - 1;
+
+      const dotTargets = isFirst
+        ? [0, 1, 2]
+        : isLast
+        ? [totalSlides - 3, totalSlides - 2, totalSlides - 1]
+        : [currentSlide - 1, currentSlide, currentSlide + 1];
+
+      return (
+        <ul className="flex justify-center gap-2 mt-4">
+          {[0, 1, 2].map((dot, index) => {
+            const isActive =
+              (isFirst && index === 0) ||
+              (isLast && index === 2) ||
+              (!isFirst && !isLast && index === 1);
+
+            return (
+              <li
+                key={index}
+                onClick={() => sliderRef.current?.slickGoTo(dotTargets[index])}
+                className={`w-3 h-3 rounded-full cursor-pointer transition-colors duration-300 ${
+                  isActive ? "bg-pink-500" : "bg-gray-400"
+                }`}
+              />
+            );
+          })}
+        </ul>
+      );
+    },
+  };
+
+  return (
+    <div className="slider-container bg-backgroundlite max-w-7xl mx-auto px-4 md:px-8">
+      <Slider ref={sliderRef} {...settings}>
+        {BannerData.map((el, i) => (
+          <div key={i}>
+            <div className="flex flex-col md:flex-row justify-start items-center md:items-start gap-7 md:gap-0 py-8 md:py-[0px]">
+              
+              {/* Left image (like lightimage) */}
+            <div className="flex justify-start items-start px-4 md:px-0 md:ml-[-40px] lg:ml-[-2px] flex-shrink-0 md:mt-0">
+
+                <img
+                  src={el.leftImage}
+                  alt="left visual"
+                  className="w-full max-w-[220px] h-auto mt-0"
+                />
+              </div>
+
+              {/* Text Content */}
+              <div className="subheader w-full md:w-[550px] flex flex-col items-center md:items-start text-center md:text-left  md:gap-0 py-8 md:py-[120px]">
+                <p className="text-pink-500 text-xs sm:text-sm font-medium mb-2">
+                  {el.subtitle}
+                </p>
+                <div className="text-[24px] md:text-[40px] font-bold">
+                  <h1>{el.title1}</h1>
+                  <h1>{el.title2}</h1>
+                </div>
+                <p className="text-[12px] sm:text-sm py-[15px] leading-relaxed">
+                  {el.description}
+                </p>
+                <button className="primary-btn ">
+                  Shop Now
+                </button>
+              </div>
+
+              {/* Right image (like banner sofaimage) */}
+              <div className="sofaimage flex-shrink-0  md:gap-0 py-8 md:py-[100px] relative">
+                <img
+                  src={el.rightImage}
+                  alt="sofa visual"
+                  className="w-full max-w-[350px] max-h-[300] "
+                />
+                {
+                  el.discount && <div className="absolute">
+                    {el.discount}
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        ))}
+      </Slider>
+    </div>
+
+
+
+  );
+}
+
+export default SimpleSlider2;

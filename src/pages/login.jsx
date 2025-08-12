@@ -1,55 +1,90 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 
 function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+
   return (
-   
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <div className="w-full max-w-sm bg-white p-6 sm:p-8 rounded-md shadow-md border border-blue-200">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <div className="w-full max-w-sm bg-white p-6 sm:p-8 rounded-md shadow-md border border-blue-400">
         
         {/* Title */}
         <h2 className="text-2xl font-bold text-center mb-2">Login</h2>
         <p className="text-sm text-gray-500 text-center mb-6">
-          Please login using account detail bellow.
+          Please login using your account details below.
         </p>
 
         {/* Email */}
-        <input
-          type="email"
-          placeholder="Email Address"
-          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm mb-4 focus:outline-none focus:ring-2 focus:ring-pink-400"
-        />
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            Email
+          </label>
+          <div className="relative">
+            <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+            <input
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="w-full border border-gray-300 rounded-md pl-10 pr-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#0A174E]"
+              required
+            />
+          </div>
+        </div>
 
         {/* Password */}
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm mb-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
-        />
+        <div className="mb-2">
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            Password
+          </label>
+          <div className="relative">
+            <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              className="w-full border border-gray-300 rounded-md pl-10 pr-10 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#0A174E]"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
+            >
+              {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+            </button>
+          </div>
+        </div>
 
         {/* Forgot password */}
         <div className="text-right mb-4">
-          <a href="#" className="text-sm text-gray-500 hover:text-pink-500">
+          <a href="#" className="text-sm text-gray-500 hover:text-[#0A174E]">
             Forgot your password?
           </a>
         </div>
 
         {/* Sign In Button */}
-        <button className="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 rounded-md transition-colors">
+        <button className="w-full primary-btn py-3 rounded-md pl-10 pr-10 ">
           Sign In
         </button>
 
         {/* Footer link */}
         <p className="text-center text-sm text-gray-500 mt-6">
           Don’t have an Account?
-          <a href="#" className="text-pink-500 hover:underline ml-1">
+          <a href="/signup" className="text-[#0A174E] hover:underline ml-1">
             Create account
           </a>
         </p>
       </div>
     </div>
-
- 
-  )
+  );
 }
 
-export default LoginForm
+export default LoginForm;

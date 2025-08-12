@@ -86,18 +86,26 @@ function SimpleSlider({ BannerData }) {
               </div>
 
               {/* Right image (like banner sofaimage) */}
-              <div className="sofaimage flex-shrink-0  md:gap-0 py-8 md:py-[120px]">
+              <div className="sofaimage flex-shrink-0  md:gap-0 py-8 md:py-[100px] relative">
                 <img
                   src={el.rightImage}
                   alt="sofa visual"
-                  className="w-full max-w-[350px] max-h-[300]"
+                  className="w-full max-w-[350px] max-h-[300] "
                 />
+                {
+                  el.discount && <div className="absolute">
+                    {el.discount}
+                  </div>
+                }
               </div>
             </div>
           </div>
         ))}
       </Slider>
     </div>
+
+
+
   );
 }
 
