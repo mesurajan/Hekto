@@ -6,53 +6,42 @@ import "slick-carousel/slick/slick-theme.css";
 function SimpleSlider({ BannerData }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
-  const totalSlides = BannerData.length;
+  // const totalSlides = BannerData.length;
 
   const settings = {
-    dots: true,
-    arrows: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    beforeChange: (_, next) => setCurrentSlide(next),
-    appendDots: () => {
-      const isFirst = currentSlide === 0;
-      const isLast = currentSlide === totalSlides - 1;
-
-      const dotTargets = isFirst
-        ? [0, 1, 2]
-        : isLast
-        ? [totalSlides - 3, totalSlides - 2, totalSlides - 1]
-        : [currentSlide - 1, currentSlide, currentSlide + 1];
-
-      return (
-        <ul className="flex justify-center gap-2 mt-4">
-          {[0, 1, 2].map((dot, index) => {
-            const isActive =
-              (isFirst && index === 0) ||
-              (isLast && index === 2) ||
-              (!isFirst && !isLast && index === 1);
-
-            return (
-              <li
-                key={index}
-                onClick={() => sliderRef.current?.slickGoTo(dotTargets[index])}
-                className={`w-3 h-3 rounded-full cursor-pointer transition-colors duration-300 ${
-                  isActive ? "bg-pink-500" : "bg-gray-400"
-                }`}
-              />
-            );
-          })}
-        </ul>
-      );
-    },
-  };
+  dots: true,
+  arrows: false,
+  infinite: true,
+  speed: 600,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  beforeChange: (_, next) => setCurrentSlide(next),
+  appendDots: () => (
+    <ul className="flex justify-center gap-2 mt-10">
+      {BannerData.map((_, index) => {
+        const isActive = index === currentSlide;
+        return (
+          <li
+            key={index}
+            onClick={() => sliderRef.current?.slickGoTo(index)}
+            className={`cursor-pointer transition-colors duration-300 rounded-sm ${
+              isActive ? "bg-[#0A174E]" : "bg-gray-400"
+            }`}
+            style={{
+              width: "16px",
+              height: "4px",
+            }}
+          />
+        );
+      })}
+    </ul>
+  ),
+};
 
   return (
-    <div className="slider-container bg-backgroundlite max-w-7xl mx-auto px-4 md:px-8">
+    <div className="slider-container bg-backgroundlite max-w-7xl mx-auto px-4 md:px-8 ">
       <Slider ref={sliderRef} {...settings}>
         {BannerData.map((el, i) => (
           <div key={i}>
@@ -86,7 +75,7 @@ function SimpleSlider({ BannerData }) {
               </div>
 
               {/* Right image (like banner sofaimage) */}
-              <div className="sofaimage flex-shrink-0  md:gap-0 py-8 md:py-[100px] relative">
+              <div className="sofaimage flex-shrink-0  md:gap-0 py-8 md:py-[100px] relative ">
                 <img
                   src={el.rightImage}
                   alt="sofa visual"
