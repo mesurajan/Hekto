@@ -18,7 +18,7 @@ function LatestProductSlider() {
     speed: 600,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 3000,
     beforeChange: (_, next) => setCurrentSlide(next),
   };

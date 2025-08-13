@@ -34,7 +34,7 @@
   }
   .container
   {
-      @apply container mx-auto max-w-[1080px];
+      @apply container mx-auto max-w-[1920px];
   }
   
 }
