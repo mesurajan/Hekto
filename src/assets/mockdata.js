@@ -127,3 +127,36 @@ export const latestProducts = [
     ],
   },
 ];
+
+
+
+export const TopCategory = [
+  {
+    id: 1,
+    chairs: [
+      { id: 1, title: "Pure wooden chair", price: "$350", chairimage: chair01 },
+      { id: 2, title: "Modern comfy chair", price: "$420", chairimage: chair02 },
+      { id: 3, title: "Classic style chair", price: "$380", chairimage: chair03 },
+      { id: 4, title: "Ergonomic chair", price: "$450", chairimage: chair04 },
+    ],
+  },
+  {
+    id: 2,
+    chairs: [
+      { id: 5, title: "Vintage chair", price: "$370", chairimage: chair04 },
+      { id: 6, title: "Office chair", price: "$390", chairimage: chair01 },
+      { id: 7, title: "Gaming chair", price: "$430", chairimage: chair02 },
+      { id: 8, title: "Minimalist chair", price: "$400", chairimage: chair03 },
+    ],
+  },
+  {
+    id: 3,
+    chairs: [
+      { id: 9, title: "Luxury chair", price: "$480", chairimage: chair02 },
+      { id: 10, title: "Outdoor chair", price: "$360", chairimage: chair03 },
+      { id: 11, title: "Folding chair", price: "$300", chairimage: chair04 },
+      { id: 12, title: "Classic wooden chair", price: "$410", chairimage: chair01 },
+    ],
+  },
+
+];

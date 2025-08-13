@@ -6,7 +6,8 @@ import LoginForm from './pages/auth/login';
 import SignupForm from './pages/auth/signup';
 import Product from './pages/products/product'
 import ProductDetails from './pages/products/productDetails'
-import LatestProduct from "./pages/home/Sliders/LatestProduct";
+
+
 function App() {
   return (
     <>
@@ -18,7 +19,8 @@ function App() {
           <Route index element={<Home/>} />
           <Route path= "product" element={<Product/>}/>
           <Route path="productDetails/:id" element={<ProductDetails/>}/>
-          <Route path="LatestProduct" element={<LatestProduct/>}/>
+         
+
         </Route>
 
 
