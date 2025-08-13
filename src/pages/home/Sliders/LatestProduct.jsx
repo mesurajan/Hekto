@@ -1,0 +1,87 @@
+import React, { useState, useRef } from "react";
+import Slider from "react-slick";
+import { latestProducts } from "../../../assets/mockdata"; // adjust path
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
+
+function LatestProductSlider() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef(null);
+
+  const navItems = ["New Arrivals", "Best Seller", "Featured", "Special Offer"];
+
+  const settings = {
+    dots: false,
+    arrows: false,
+    infinite: true,
+    speed: 600,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    beforeChange: (_, next) => setCurrentSlide(next),
+  };
+
+  if (!latestProducts.length) return null;
+
+  return (
+    <div className="slider-container max-w-7xl mx-auto px-4 md:px-0">
+      {/* Heading */}
+      <div className="flex justify-center mb-4">
+        <h1 className="text-[28px] md:text-[32px] font-semibold text-[#0A174E]">
+          Latest Products
+        </h1>
+      </div>
+
+      {/* Nav as slider control */}
+      <ul className="flex justify-center gap-4 md:gap-10  mb-6 text-[12px]">
+        {navItems.map((item, index) => (
+          <li
+            key={index}
+            onClick={() => sliderRef.current?.slickGoTo(index)}
+            className={`cursor-pointer font-medium transition-colors duration-300 ${
+              currentSlide === index ? "text-[#0A174E]" : "text-gray-400"
+            }`}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+
+      {/* Slider */}
+      <Slider ref={sliderRef} {...settings}>
+        {latestProducts.map((slide) => (
+          <div key={slide.id} className="grid grid-cols-1 gap-4">
+            {[0, 1].map((rowIndex) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                {slide.chairs.slice(rowIndex * 3, rowIndex * 3 + 3).map((chair) => (
+                  <div
+                    key={chair.id}
+                    className="bg-background-secondary flex flex-col justify-center items-center hover:border-2 hover:border-blue-900 p-4 rounded"
+                  >
+                    <img
+                      src={chair.chairimage}
+                      alt={chair.title}
+                      className="w-full max-w-[220px] max-h-[240px] mt-0"
+                    />
+                    <div className="mt-2 text-center">
+                      <h3 className="font-semibold text-sm">{chair.title}</h3>
+                      <p className="text-xs text-gray-600">{chair.price}</p>
+                    </div>
+
+                      <Link to="/productDetails/:id">
+                      <button className="primary-btn mt-6">View details</button>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        ))}
+      </Slider>
+    </div>
+  );
+}
+
+export default LatestProductSlider;

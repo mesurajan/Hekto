@@ -41,7 +41,7 @@ function SimpleSlider({ BannerData }) {
 };
 
   return (
-    <div className="slider-container bg-backgroundlite max-w-7xl mx-auto px-4 md:px-8 ">
+    <div className=" container slider-container bg-backgroundlite max-w-7xl mx-auto px-4 md:px-8 ">
       <Slider ref={sliderRef} {...settings}>
         {BannerData.map((el, i) => (
           <div key={i}>
