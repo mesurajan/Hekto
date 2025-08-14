@@ -53,7 +53,7 @@ function SimpleSlider({ BannerData }) {
                 <img
                   src={el.leftImage}
                   alt="left visual"
-                  className="w-full max-w-[220px] h-auto mt-0"
+                  className="w-full max-w-[300px] h-auto mt-0"
                 />
               </div>
 
@@ -82,7 +82,8 @@ function SimpleSlider({ BannerData }) {
                   className="w-full max-w-[350px] max-h-[300] "
                 />
                 {
-                  el.discount && <div className="absolute">
+                  el.discount && 
+                     <div className="absolute top-20 -right-3 bg-[#00BFFF] text-white text-xs sm:text-sm font-bold px-8 py-3 rounded-full shadow-md">
                     {el.discount}
                   </div>
                 }

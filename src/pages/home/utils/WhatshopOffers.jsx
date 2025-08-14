@@ -19,7 +19,7 @@ function WhatshopOffers() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
                 {/* 1st */}
                 <div className="text-[#0A174E] flex flex-col items-center text-center gap-3 p-4 bg-white rounded shadow-sm">
-                  <img src={Car} alt="Support" className="w-16 h-16 sm:w-20 sm:h-20 md:w-32 md:h-24" />
+                  <img src={Car} alt="Support" className="w-20 h-16 sm:w-20 sm:h-20 md:w-32 md:h-24" />
                   <h1 className="text-lg sm:text-xl md:text-2xl font-semibold">24/7 Support</h1>
                   <p className="text-sm sm:text-base md:text-[13px]">
                     We are always here to help you with any questions or concerns, anytime.
@@ -28,7 +28,7 @@ function WhatshopOffers() {
     
                 {/* 2nd */}
                 <div className="text-[#0A174E] flex flex-col items-center text-center gap-3 p-4 bg-white rounded shadow-sm">
-                  <img src={Bonus} alt="Bonus" className="w-16 h-16 sm:w-20 sm:h-20 md:w-32 md:h-24" />
+                  <img src={Bonus} alt="Bonus" className="w-20 h-16 sm:w-20 sm:h-20 md:w-32 md:h-24" />
                   <h1 className="text-lg sm:text-xl md:text-2xl font-semibold">Exclusive Bonus</h1>
                   <p className="text-sm sm:text-base md:text-[13px]">
                     Enjoy special rewards and offers for our loyal customers.
@@ -37,7 +37,7 @@ function WhatshopOffers() {
     
                 {/* 3rd */}
                 <div className="text-[#0A174E] flex flex-col items-center text-center gap-3 p-4 bg-white rounded shadow-sm">
-                  <img src={Achivement} alt="Achievement" className="w-16 h-16 sm:w-20 sm:h-20 md:w-32 md:h-24" />
+                  <img src={Achivement} alt="Achievement" className="w-20 h-16 sm:w-20 sm:h-20 md:w-35 md:h-24" />
                   <h1 className="text-lg sm:text-xl md:text-2xl font-semibold">Our Achievements</h1>
                   <p className="text-sm sm:text-base md:text-[13px]">
                     Our team consistently delivers outstanding results—efficient, reliable, and committed to excellence.
@@ -46,7 +46,7 @@ function WhatshopOffers() {
     
                 {/* 4th */}
                 <div className="text-[#0A174E] flex flex-col items-center text-center gap-3 p-4 bg-white rounded shadow-sm">
-                  <img src={Call} alt="Call Support" className="w-16 h-16 sm:w-20 sm:h-20 md:w-32 md:h-24" />
+                  <img src={Call} alt="Call Support" className="w-20 h-16 sm:w-20 sm:h-20 md:w-32 md:h-24" />
                   <h1 className="text-lg sm:text-xl md:text-2xl font-semibold">Call Support</h1>
                   <p className="text-sm sm:text-base md:text-[13px]">
                     Reach our support team anytime via phone—quick, reliable, and friendly service.

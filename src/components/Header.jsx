@@ -89,7 +89,11 @@ function Header() {
             </li>
 
             <li className="cursor-pointer">Blogs</li>
-            <li className="cursor-pointer">Shop</li>
+
+            <li className="cursor-pointer">
+              <Link to="shop"> Shop</Link>
+            </li>
+           
             <li className="cursor-pointer">Contact</li>
           </ul>
 

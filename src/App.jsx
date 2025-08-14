@@ -4,8 +4,9 @@ import Layout from "./layout/Layout";
 import Home from "./pages/home/Home";
 import LoginForm from './pages/auth/login';
 import SignupForm from './pages/auth/signup';
-import Product from './pages/products/product'
-import ProductDetails from './pages/products/productDetails'
+import Product from './pages/products/product';
+import ProductDetails from './pages/products/productDetails';
+import Shop from './pages/shop';
 
 
 function App() {
@@ -19,8 +20,7 @@ function App() {
           <Route index element={<Home/>} />
           <Route path= "product" element={<Product/>}/>
           <Route path="productDetails/:id" element={<ProductDetails/>}/>
-         
-
+         <Route path="shop" element={<Shop/>}/>
         </Route>
 
 

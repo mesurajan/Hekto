@@ -50,7 +50,7 @@ function TopCategories({ BannerData = [] }) {
       <Slider ref={sliderRef} {...settings}>
         {BannerData.map((slide) => (
           <div key={slide.id}>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-4 lg:grid-cols-4 lg:gap-6">
+            <div className=" mt-5 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-4 lg:grid-cols-4 lg:gap-6">
               {slide.chairs.map((chair) => (
                 <div
                   key={chair.id}
