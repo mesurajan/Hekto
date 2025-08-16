@@ -10,7 +10,7 @@ function Footer() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-10 md:py-[85px] px-8 md:px-4 py-20 ">
         
-       <div className='md:px-10 '>
+       <div className='md:px-4 '>
         <header>
           <h1 className='text-3xl font-bold '>Hekto</h1>
           </header>

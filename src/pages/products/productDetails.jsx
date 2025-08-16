@@ -15,23 +15,24 @@ function ProductDetails() {
   }
 
   return (
-    <div>
+    <div >
       {/* Header with Breadcrumbs */}
       <div className="container bg-backgroundlite">
-        <h1 className="font-bold text-[40px] py-6">Product Details</h1>
-        <AppBreadcrumbs />
+        <h1 className="font-bold text-[40px] py-6 md:px-10 px-4">Product Details</h1>
+        <AppBreadcrumbs  />
       </div>
 
       {/* Main Product Section */}
-      <div className="container grid gap-10 py-12 md:grid-cols-2">
+      <div className="grid gap-0 px-4 py-12 mt-6 md:grid-cols-2 md:px-15">
         {/* Left Side - Images */}
-        <div className="flex gap-4">
-          <div className="flex flex-col gap-4">
-            {/* You can add multiple thumbnails if product has more images */}
-            <img src={product.chairimage} alt={product.title} className="w-20 h-20 p-1 border" />
-            <img src={product.chairimage} alt={product.title} className="w-20 h-20 p-1 border" />
+        <div className="flex gap-2">
+          <div className="flex flex-col gap-2">
+          
+            <img src={product.chairimage} alt={product.title} className="p-1 border max-w-25 max-h-30" />
+            <img src={product.chairimage} alt={product.title} className="p-1 border max-w-25 max-h-30" />
+            <img src={product.chairimage} alt={product.title} className="p-1 border max-w-25 max-h-30" />
           </div>
-          <img src={product.chairimage} alt={product.title} className="w-full rounded shadow" />
+          <img src={product.chairimage} alt={product.title} className="max-w-[300px] max-h-[350px] rounded shadow" />
         </div>
 
         {/* Right Side - Info */}
@@ -59,14 +60,14 @@ function ProductDetails() {
           <div className="mt-4">
             <span className="font-medium">Color:</span>
             <div className="flex gap-2 mt-2">
-              <div className="w-6 h-6 bg-red-500 rounded-full cursor-pointer"></div>
-              <div className="w-6 h-6 bg-blue-500 rounded-full cursor-pointer"></div>
-              <div className="w-6 h-6 bg-green-500 rounded-full cursor-pointer"></div>
+              <div className="w-3 h-3 bg-red-500 rounded-full cursor-pointer"></div>
+              <div className="w-3 h-3 bg-blue-500 rounded-full cursor-pointer"></div>
+              <div className="w-3 h-3 bg-green-500 rounded-full cursor-pointer"></div>
             </div>
           </div>
 
           {/* Add to cart */}
-          <button className="px-6 py-3 mt-6 text-white bg-pink-600 rounded-lg shadow-md hover:bg-pink-700">
+          <button className="px-6 py-3 mt-6 text-white shadow-md primary-btn hover:bg-background">
             Add to Cart
           </button>
 
@@ -96,6 +97,9 @@ function ProductDetails() {
           </p>
         </div>
       </div>
+       <div className="container">Related items</div>
+
+     
     </div>
   );
 }

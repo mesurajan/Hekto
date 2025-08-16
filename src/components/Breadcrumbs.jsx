@@ -6,8 +6,8 @@ const AppBreadcrumbs = () => {
   const pathnames = location.pathname.split("/").filter(Boolean);
 
   return (
-    <div className="#">
-    <nav className="mt-2 text-sm md:px-15">
+    <div className="#"> 
+    <nav className="px-4 py-4 mt-2 text-sm md:px-10">
       <ol className="flex flex-wrap items-center text-gray-600">
         <li>
           <Link to="/" className="font-medium hover:text-blue-600">
