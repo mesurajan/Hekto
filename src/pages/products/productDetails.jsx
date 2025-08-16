@@ -32,7 +32,7 @@ function ProductDetails() {
             <img src={product.chairimage} alt={product.title} className="p-1 border max-w-25 max-h-30" />
             <img src={product.chairimage} alt={product.title} className="p-1 border max-w-25 max-h-30" />
           </div>
-          <img src={product.chairimage} alt={product.title} className="max-w-[300px] max-h-[350px] rounded shadow" />
+          <img src={product.chairimage} alt={product.title} className="max-w-[300px] max-h-[380px] rounded shadow" />
         </div>
 
         {/* Right Side - Info */}
@@ -67,7 +67,7 @@ function ProductDetails() {
           </div>
 
           {/* Add to cart */}
-          <button className="px-6 py-3 mt-6 text-white bg-pink-600 rounded-lg shadow-md hover:bg-pink-700">
+          <button className="px-6 py-3 mt-6 text-white shadow-md primary-btn hover:bg-background">
             Add to Cart
           </button>
 
