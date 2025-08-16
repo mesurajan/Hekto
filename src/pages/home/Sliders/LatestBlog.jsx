@@ -3,7 +3,7 @@ import latest01 from '../../../assets/images/latest01.jpg';
 import latest02 from '../../../assets/images/latest02.jpg';
 import latest03 from '../../../assets/images/latest03.jpg';
 import Vector from '../../../assets/images/Vector.png';
-import Vector2 from '../../../assets/images/Vector2.png';
+import Vector2 from '../../../assets/images/vector2.png';
 
 function LatestBlog() {
   return (
