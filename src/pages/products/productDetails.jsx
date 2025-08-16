@@ -23,7 +23,7 @@ function ProductDetails() {
       </div>
 
       {/* Main Product Section */}
-      <div className="grid gap-0 px-4 py-12 mt-6 md:grid-cols-2 md:px-15">
+      <div className="container grid gap-2 px-4 py-12 mt-10 md:grid-cols-2 md:px-15">
         {/* Left Side - Images */}
         <div className="flex gap-2">
           <div className="flex flex-col gap-2">
@@ -67,7 +67,7 @@ function ProductDetails() {
           </div>
 
           {/* Add to cart */}
-          <button className="px-6 py-3 mt-6 text-white shadow-md primary-btn hover:bg-background">
+          <button className="px-6 py-3 mt-6 text-white bg-pink-600 rounded-lg shadow-md hover:bg-pink-700">
             Add to Cart
           </button>
 
