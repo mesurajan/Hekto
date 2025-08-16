@@ -1,8 +1,11 @@
 import React from 'react'
+import AppBreadcrumbs from '../../components/Breadcrumbs';
 
 function product() {
   return (
-    <div>product latest</div>
+    <div>product latest
+       <AppBreadcrumbs />
+    </div>
   )
 }
 

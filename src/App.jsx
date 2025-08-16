@@ -14,7 +14,7 @@ function App() {
     <>
 
       <Routes>
-
+   
             {/* routes for rest layouts */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home/>} />
