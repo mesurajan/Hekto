@@ -6,6 +6,7 @@ import chair03 from "../assets/images/chairs/chair03.png";
 import chair04 from "../assets/images/chairs/chair04.png";
 import chair05 from "../assets/images/chairs/chair05.png";
 import chair06 from "../assets/images/chairs/chair06.png";
+import DiscountChair from "../assets/images/chairs/DiscountItem.png"
 
 export const BannerData = [
   {
@@ -159,4 +160,52 @@ export const TopCategory = [
     ],
   },
 
+];
+
+export const  DiscountItem=[
+    {
+    id: 1,
+    title: "20% Discount Of All Products",
+    subtitle: "Eams Sofa Compact",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu eget feugiat habitasse nec, bibendum condimentum.",
+    features: [
+      "Material expose like metals",
+      "Simple neutral colours.",
+      "Clear lines and geomatric figures",
+      "Material expose like metals",
+    ],
+    buttonText: "Shop Now",
+    chairimage: DiscountChair,
+  },
+  {
+    id: 2,
+    title: "Exclusive Offer on Chairs",
+    subtitle: "Modern Comfy Chair",
+    description:
+      "A blend of comfort and style with elegant curves and strong materials.",
+    features: [
+      "Premium wooden finish",
+      "Soft cushioned seating",
+      "Ergonomic back support",
+      "Available in multiple colors",
+    ],
+    buttonText: "Shop Now",
+    chairimage: DiscountChair,
+  },
+  {
+    id: 3,
+    title: "Classic Collection Discount",
+    subtitle: "Classic Style Chair",
+    description:
+      "Inspired by timeless design, this chair is perfect for both modern and vintage spaces.",
+    features: [
+      "Durable solid wood",
+      "Elegant neutral tones",
+      "Comfortable padded seat",
+      "Stylish retro vibe",
+    ],
+    buttonText: "Shop Now",
+    chairimage: DiscountChair,
+  },
 ];
