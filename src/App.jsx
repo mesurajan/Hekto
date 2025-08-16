@@ -7,6 +7,9 @@ import SignupForm from './pages/auth/signup';
 import Product from './pages/products/product';
 import ProductDetails from './pages/products/productDetails';
 import Shop from './pages/shop';
+import Contact from "./pages/Contact";
+import Blogs from "./pages/Blogs";
+
 
 
 function App() {
@@ -20,7 +23,10 @@ function App() {
           <Route index element={<Home/>} />
           <Route path= "product" element={<Product/>}/>
           <Route path="productDetails/:id" element={<ProductDetails/>}/>
-         <Route path="shop" element={<Shop/>}/>
+          <Route path="shop" element={<Shop/>}/>
+          <Route path="contact" element={<Contact/>}/>
+          <Route path="blogs" element={<Blogs/>}/>
+
         </Route>
 
 

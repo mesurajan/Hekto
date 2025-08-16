@@ -4,6 +4,7 @@ import SimpleSlider2 from "./Sliders/Slider2";
 import TopCategories from "./Sliders/TopCategories";
 import LatestProduct from "./Sliders/LatestProduct";
 import DiscountItem from "./Sliders/DisItem";
+import LatestBlog from "./Sliders/LatestBlog";
 import { BannerData, BannerData2,latestProducts,TopCategory } from "../../assets/mockdata"; 
 import WhatshopOffers from "./utils/WhatshopOffers";
 import UniqueFeatures from "./utils/UniqueFeatures";
@@ -59,7 +60,7 @@ function Home() {
       <section
         className=" container mt-20 bg-no-repeat bg-center bg-cover h-[350px] sm:h-[400px] md:h-[400px] "
         style={{ backgroundImage: `url(${BgImage})` }}>
-      <div className="flex flex-row flex-wrap md:flex-col   items-center justify-center  h-full ">
+      <div className="flex flex-row flex-wrap items-center justify-center h-full md:flex-col ">
         <div className="#">
           <h2 className=" text-[#0A174E] text-center text-2xl sm:text-2xl md:text-4xl font-bold sm:mx-auto md:max-w-[650px] mt-12">
             Get Leatest Update By Subscribing Our Newslater
@@ -68,7 +69,7 @@ function Home() {
 
          <div className="py-2 md:py-10">
           <Link to="/shop"> 
-              <button className="primary-btn px-10">Shop Now</button>
+              <button className="px-10 primary-btn">Shop Now</button>
           </Link>
         </div>
       </div>
@@ -84,6 +85,9 @@ function Home() {
 
 
       {/* Latest Blog */}
+      <section>
+          <LatestBlog/>
+      </section>
 
    </div>
   );

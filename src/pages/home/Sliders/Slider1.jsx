@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
 
 function SimpleSlider({ BannerData }) {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -41,7 +42,7 @@ function SimpleSlider({ BannerData }) {
 };
 
   return (
-    <div className=" slider-container bg-backgroundlite  mx-auto container ">
+    <div className="container mx-auto slider-container bg-backgroundlite">
       <Slider ref={sliderRef} {...settings}>
         {BannerData.map((el, i) => (
           <div key={i}>
@@ -59,7 +60,7 @@ function SimpleSlider({ BannerData }) {
 
               {/* Text Content */}
               <div className="subheader w-full md:w-[550px] flex flex-col items-center md:items-start text-center md:text-left  md:gap-0 py-8 md:py-[120px]">
-                <p className="text-pink-500 text-xs sm:text-sm font-medium mb-2">
+                <p className="mb-2 text-xs font-medium text-pink-500 sm:text-sm">
                   {el.subtitle}
                 </p>
                 <div className="text-[24px] md:text-[40px] font-bold">
@@ -69,9 +70,11 @@ function SimpleSlider({ BannerData }) {
                 <p className="text-[12px] sm:text-sm py-[15px] leading-relaxed">
                   {el.description}
                 </p>
-                <button className="primary-btn ">
-                  Shop Now
-                </button>
+                <Link to="shop" className="primary-btn">
+                Shop Now
+              </Link>
+                
+
               </div>
 
               {/* Right image (like banner sofaimage) */}

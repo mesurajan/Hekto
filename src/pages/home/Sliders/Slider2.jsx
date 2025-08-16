@@ -43,7 +43,7 @@ function SimpleSlider2({ BannerData = [] }) {
   if (!BannerData.length) return null;
 
   return (
-    <div className="slider-container max-w-7xl mx-auto px-4 md:px-0">
+    <div className="px-4 mx-auto slider-container max-w-7xl md:px-0">
       <Slider ref={sliderRef} {...settings}>
         {BannerData.map((slide) => (
           <div key={slide.id}>
@@ -51,7 +51,7 @@ function SimpleSlider2({ BannerData = [] }) {
               {slide.chairs.map((chair) => (
                 <div
                   key={chair.id}
-                  className="bg-background-secondary flex flex-col justify-center items-center hover:border-2 hover:border-blue-900 p-4 rounded"
+                  className="flex flex-col items-center justify-center p-4 rounded bg-background-secondary hover:border-2 hover:border-blue-900"
                 >
                   <img
                     src={chair.chairimage}
@@ -59,11 +59,11 @@ function SimpleSlider2({ BannerData = [] }) {
                     className="w-full max-w-[220px] max-h-[240px] mt-0"
                   />
                   <div className="mt-2 text-center">
-                    <h3 className="font-semibold text-sm">{chair.title}</h3>
+                    <h3 className="text-sm font-semibold">{chair.title}</h3>
                     <p className="text-xs text-gray-600">{chair.price}</p>
                   </div>
-                  <Link to="/productDetails/:id">
-                  <button className="primary-btn mt-6">View details</button>
+                  <Link to={`/productDetails/${chair.id}`}>
+                  <button className="mt-6 primary-btn">View details</button>
                 </Link>
                 </div>
               ))}

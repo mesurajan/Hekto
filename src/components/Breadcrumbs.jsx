@@ -10,7 +10,7 @@ const AppBreadcrumbs = () => {
     <nav className="mt-2 text-sm md:px-15">
       <ol className="flex flex-wrap items-center text-gray-600">
         <li>
-          <Link to="/" className="hover:text-blue-600 font-medium">
+          <Link to="/" className="font-medium hover:text-blue-600">
             Home
           </Link>
         </li>
@@ -23,13 +23,13 @@ const AppBreadcrumbs = () => {
             <li key={name} className="flex items-center">
               <span className="mx-2">/</span>
               {isLast ? (
-                <span className="text-pink-500 font-medium capitalize">
+                <span className="text-[#0A174E]  capitalize font-semibold">
                   {decodeURIComponent(name).replace(/-/g, " ")}
                 </span>
               ) : (
                 <Link
                   to={routeTo}
-                  className="hover:text-blue-600 capitalize"
+                  className="capitalize hover:text-blue-600"
                 >
                   {decodeURIComponent(name).replace(/-/g, " ")}
                 </Link>
