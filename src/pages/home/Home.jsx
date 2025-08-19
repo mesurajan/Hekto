@@ -8,6 +8,9 @@ import LatestBlog from "./Sliders/LatestBlog";
 import { BannerData, BannerData2,latestProducts,TopCategory } from "../../assets/mockdata"; 
 import WhatshopOffers from "./utils/WhatshopOffers";
 import UniqueFeatures from "./utils/UniqueFeatures";
+import  TrendingProducts from "./utils/TrendingProducts";
+
+
 import BgImage from "../../assets/images/newsLetter.png"; 
 import BrandPromotion from "../../assets/images/BrandPromotion.png";
 import {Link} from 'react-router-dom'
@@ -43,6 +46,10 @@ function Home() {
       {/* Unique Features  */}
         <section className="mt-18">
         <UniqueFeatures />
+       </section>
+
+       <section className="mt-18">
+        <TrendingProducts/>
        </section>
 
 

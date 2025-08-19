@@ -9,10 +9,15 @@ import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import hetkologo from "../assets/images/logo.png"
+import { useSelector } from "react-redux";
+
 
 
 function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const user = useSelector((state) => state.user);
+
+  console.log("This is user gloabl state",user);
 
   return (
     <div className="container">
@@ -46,13 +51,17 @@ function Header() {
                   <FaChevronDown />
                 </div>
 
-                <Link
-                  to="/login"
-                  className="flex items-center gap-2 cursor-pointer hover:text-pink-500"
-                >
-                  <p>Login</p>
-                  <FaRegUser />
-                </Link>
+                  <Link
+                    to="/login"
+                    className="flex items-center gap-2 cursor-pointer hover:text-pink-500"
+                  >
+                    {user.userName? (
+                      <p>{user.userName}</p>
+                    ) : (
+                      <p>Login</p>
+                    )}
+                    <FaRegUser />
+                  </Link>
 
                 <div className="flex items-center gap-2">
                   <p>Wishlist</p>
