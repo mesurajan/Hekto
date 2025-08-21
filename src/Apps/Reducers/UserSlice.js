@@ -1,11 +1,8 @@
+// src/Apps/Reducers/UserSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  user: {
-    userName: "Surajan Shrestha",
-    role: "Buyer",
-    email: "Surajan@gmail.com",
-  },
+  user: null, // No user logged in by default
 };
 
 export const userSlice = createSlice({

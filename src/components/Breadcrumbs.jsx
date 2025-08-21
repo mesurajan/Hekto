@@ -7,7 +7,7 @@ const AppBreadcrumbs = () => {
 
   return (
     <div className="#"> 
-    <nav className="px-4 py-4 mt-2 text-sm md:px-10">
+    <nav className="px-4 py-4 mt-2 text-sm ">
       <ol className="flex flex-wrap items-center text-gray-600">
         <li>
           <Link to="/" className="font-medium hover:text-blue-600">

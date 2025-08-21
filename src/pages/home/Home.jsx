@@ -11,8 +11,8 @@ import UniqueFeatures from "./utils/UniqueFeatures";
 import  TrendingProducts from "./utils/TrendingProducts";
 
 
-import BgImage from "../../assets/images/newsLetter.png"; 
-import BrandPromotion from "../../assets/images/BrandPromotion.png";
+import BgImage from "../../assets/images/Home/newsLetter.png"; 
+import BrandPromotion from "../../assets/images/Home/BrandPromotion.png";
 import {Link} from 'react-router-dom'
 
 

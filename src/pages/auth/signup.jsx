@@ -1,5 +1,9 @@
+// SignupForm.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, User, Phone, Home, Eye, EyeOff } from 'lucide-react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,29 +16,54 @@ function SignupForm() {
     password: ''
   });
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Signup Data:', formData);
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        setFormData({ name: '', phone: '', address: '', age: '', email: '', password: '' });
+
+        
+        toast.success(
+          <div className='text-background'>
+            Signup successful!
+          </div>,
+          { autoClose: 3000 }
+        );
+
+        // Auto redirect after 3s
+        setTimeout(() => navigate('/login'), 3000);
+
+      } else {
+        toast.error(data.message || 'Failed to create account', { autoClose: 5000 });
+      }
+    } catch (err) {
+      toast.error('Server error: ' + err.message, { autoClose: 5000 });
+    }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
+      <ToastContainer position="top-right" />
       <div className="w-full max-w-xl bg-white p-6 sm:p-8 rounded-md shadow-md border border-blue-400">
-        
-        {/* Title */}
         <h2 className="text-3xl font-bold text-center mb-4">Sign Up</h2>
         <p className="text-sm text-gray-500 text-center mb-6">
           Create a new account below.
         </p>
 
         <form onSubmit={handleSubmit}>
-
           {/* Full Name & Phone */}
           <div className="flex flex-col sm:flex-row gap-4 mb-4">
             <div className="flex-1">
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                Full Name
-              </label>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
               <div className="relative">
                 <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                 <input
@@ -48,11 +77,8 @@ function SignupForm() {
                 />
               </div>
             </div>
-
             <div className="flex-1">
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                Phone Number
-              </label>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
               <div className="relative">
                 <Phone className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                 <input
@@ -71,9 +97,7 @@ function SignupForm() {
           {/* Address & Age */}
           <div className="flex flex-col sm:flex-row gap-4 mb-4">
             <div className="flex-1">
-              <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
-                Address
-              </label>
+              <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">Address</label>
               <div className="relative">
                 <Home className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                 <input
@@ -87,11 +111,8 @@ function SignupForm() {
                 />
               </div>
             </div>
-
             <div className="flex-1">
-              <label htmlFor="age" className="block text-sm font-medium text-gray-700 mb-1">
-                Age
-              </label>
+              <label htmlFor="age" className="block text-sm font-medium text-gray-700 mb-1">Age</label>
               <input
                 id="age"
                 type="number"
@@ -107,9 +128,7 @@ function SignupForm() {
 
           {/* Email */}
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email
-            </label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <div className="relative">
               <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
               <input
@@ -126,9 +145,7 @@ function SignupForm() {
 
           {/* Password */}
           <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-              Password
-            </label>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
             <div className="relative">
               <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
               <input
@@ -152,17 +169,13 @@ function SignupForm() {
           </div>
 
           {/* Sign Up Button */}
-          <button type="submit" className="w-full primary-btn py-2 rounded-md text-sm">
-            Sign Up
-          </button>
+          <button type="submit" className="w-full primary-btn py-2 rounded-md text-sm">Sign Up</button>
         </form>
 
         {/* Footer link */}
         <p className="text-center text-sm text-gray-500 mt-6">
           Already have an Account?
-          <a href="/login" className="text-[#0A174E] hover:underline ml-1">
-            Login
-          </a>
+          <a href="/login" className="text-[#0A174E] hover:underline ml-1">Login</a>
         </p>
       </div>
     </div>

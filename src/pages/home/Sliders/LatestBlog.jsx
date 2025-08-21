@@ -1,9 +1,9 @@
 import React from 'react';
-import latest01 from '../../../assets/images/latest01.jpg';
-import latest02 from '../../../assets/images/latest02.jpg';
-import latest03 from '../../../assets/images/latest03.jpg';
-import Vector from '../../../assets/images/Vector.png';
-import Vector2 from '../../../assets/images/vector2.png';
+import latest01 from '../../../assets/images/Home/latest01.jpg';
+import latest02 from '../../../assets/images/Home/latest02.jpg';
+import latest03 from '../../../assets/images/Home/latest03.jpg';
+import Vector from '../../../assets/images/Home/Vector.png';
+import Vector2 from '../../../assets/images/Home/vector2.png';
 
 function LatestBlog() {
   return (

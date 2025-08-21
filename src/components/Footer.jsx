@@ -1,7 +1,7 @@
 import React from 'react'
-import facebook from '../assets/images/fb.png';
-import instagram from '../assets/images/insta.png' ;
-import twitter from '../assets/images/twitter.png';
+import facebook from '../assets/images/Home/fb.png';
+import instagram from '../assets/images/Home/insta.png' ;
+import twitter from '../assets/images/Home/twitter.png';
 
 
 function Footer() {

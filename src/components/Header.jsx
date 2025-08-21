@@ -8,7 +8,7 @@ import { CiSearch } from "react-icons/ci";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import hetkologo from "../assets/images/logo.png"
+import hetkologo from "../assets/images/Home/logo.png"
 import { useSelector } from "react-redux";
 
 
@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const user = useSelector((state) => state.user);
-
+  const cartCount = useSelector((state) => state.cart.count);
   console.log("This is user gloabl state",user);
 
   return (
@@ -51,7 +51,15 @@ function Header() {
                   <FaChevronDown />
                 </div>
 
-                  <Link
+                  
+                <div className="flex items-center gap-2">
+                  <p>Wishlist</p>
+                  <FaRegHeart />
+                </div>
+              </div>
+
+
+              <Link
                     to="/login"
                     className="flex items-center gap-2 cursor-pointer hover:text-pink-500"
                   >
@@ -63,19 +71,20 @@ function Header() {
                     <FaRegUser />
                   </Link>
 
-                <div className="flex items-center gap-2">
-                  <p>Wishlist</p>
-                  <FaRegHeart />
-                </div>
-              </div>
 
               {/* Cart */}
-              <div className="relative h-[40px] w-[40px] md:h-[50px] md:w-[50px] flex items-center justify-center rounded cursor-pointer">
-                <BsCart />
-                {/* <div className="absolute flex items-center justify-center h-4 text-xs text-white bg-red-500 rounded-full top-1 right-1 aspect-square">
-                  2
-                </div> */}
-              </div>
+             <div className="relative h-[40px] w-[40px] md:h-[50px] md:w-[50px] flex items-center justify-center rounded cursor-pointer">
+            <Link to="/cart" className="flex items-center justify-center w-full h-full">
+              <BsCart />
+              {cartCount > 0 && (
+                <div className="absolute flex items-center justify-center h-4 w-4 text-xs text-white bg-red-500 rounded-full top-1 right-1">
+                  {cartCount}
+                </div>
+              )}
+            </Link>
+          </div>
+
+
             </div>
           </div>
         </div>
