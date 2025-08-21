@@ -6,7 +6,7 @@ import twitter from '../assets/images/twitter.png';
 
 function Footer() {
   return ( 
-    <div className='container mt-20 bg-backgroundlite text-[#0A174E]'>
+    <div className='container  bg-backgroundlite text-[#0A174E]'>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-10 md:py-[85px] px-8 md:px-4 py-20 ">
         

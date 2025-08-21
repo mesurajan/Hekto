@@ -15,7 +15,7 @@ function ProductDetails() {
   }
 
   return (
-    <div >
+    <div className='bg-white'>
       {/* Header with Breadcrumbs */}
       <div className="container bg-backgroundlite">
         <h1 className="font-bold text-[40px] py-6 md:px-10 px-4">Product Details</h1>
