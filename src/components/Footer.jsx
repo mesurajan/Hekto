@@ -2,7 +2,7 @@ import React from 'react'
 import facebook from '../assets/images/Home/fb.png';
 import instagram from '../assets/images/Home/insta.png' ;
 import twitter from '../assets/images/Home/twitter.png';
-
+import { Link } from "react-router-dom";
 
 function Footer() {
   return ( 
@@ -18,7 +18,10 @@ function Footer() {
         <div className='mt-4 space-y-4'>
           <div className='flex items-center'>
               <input placeholder='Enter Your Email' className='h-10 px-2 border'></input>
-              <button button className='h-10 px-6 primary-btn hover:bg-primary-btn whitespace-nowrap '>Sign up</button>
+              <Link to ="signup">
+                <button button className='h-10 px-6 primary-btn hover:bg-primary-btn whitespace-nowrap '>Sign up</button>
+              </Link>
+
           </div>
           <div className='flex flex-col text-sm'>
             <p>Contact Info</p>
