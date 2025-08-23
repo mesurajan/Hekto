@@ -3,5 +3,11 @@
     "env": {
       "NODE_OPTIONS": "--max_old_space_size=4096"
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
+    }
+  ]
 }
