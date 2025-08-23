@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../Apps/Reducers/UserSlice';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -7,11 +10,13 @@ function LoginForm() {
     email: '',
     password: ''
   });
-  const [error, setError] = useState(''); // <-- New state for error message
+  const [error, setError] = useState(''); // Error message
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(''); // Reset error message on new attempt
+    setError(''); // Reset error on new attempt
     try {
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
         method: 'POST',
@@ -30,10 +35,17 @@ function LoginForm() {
       }
 
       if (res.ok) {
+        // ✅ Save token in localStorage
         localStorage.setItem('token', data.token);
-        window.location.href = '/';
+
+        // ✅ Save user info in Redux and localStorage
+        const userObj = { email: formData.email }; // you can add name if backend returns it
+        dispatch(setUser(userObj));
+        localStorage.setItem('user', JSON.stringify(userObj));
+
+        navigate('/'); // redirect after login
       } else {
-        setError(data.message || 'Invalid user credentials'); // <-- Show inline error
+        setError(data.message || 'Invalid user credentials'); // Show inline error
       }
     } catch (err) {
       setError('Server error: ' + err.message);

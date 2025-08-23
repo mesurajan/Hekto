@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../Apps/Reducers/cartSlice";
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart } from "react-icons/bs";
-
+import BrandPromotion from "../../assets/images/Home/BrandPromotion.png"; 
 
 function Product({ onAddToWishlist  }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -191,6 +191,15 @@ function Product({ onAddToWishlist  }) {
           </p>
         )}
       </div>
+
+
+            {/*  Brand promotion */}
+            <section>
+              <div className="container flex items-center justify-center mt-10">
+                <img src={BrandPromotion} alt="brandpromotion" className="sm:h-10 md:h-20 sm:px-4 md:px-10"/>
+              </div>
+            </section>
+      
     </div>
   );
 }

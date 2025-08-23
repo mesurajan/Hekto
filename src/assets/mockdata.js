@@ -286,5 +286,3 @@ export const  DiscountItem=[
     chairimage: DiscountChair,
   },
 ];
-
-

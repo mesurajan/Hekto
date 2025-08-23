@@ -1,6 +1,9 @@
 import React, { useState, useRef } from "react";
 import Slider from "react-slick";
-import { latestProducts } from "../../../assets/mockdata"; // adjust path if needed
+import { latestProducts } from '../../../assets/latestProducts ';
+
+ 
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
