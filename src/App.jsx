@@ -12,6 +12,8 @@ import Contact from "./pages/Contact";
 import Blogs from "./pages/Blogs";
 import Cart from './pages/products/Cart'; 
 import ProtectedRoute from './components/ProtectedRoute'; // import your protected route
+import WhishList from './pages/products/WhishList';
+
 
 function App() {
   return (
@@ -25,15 +27,9 @@ function App() {
         <Route path="contact" element={<Contact/>}/>
         <Route path="blogs" element={<Blogs/>}/>
         
-        {/* Protected Cart route */}
-        <Route 
-          path="cart" 
-          element={
-            <ProtectedRoute>
-              <Cart />
-            </ProtectedRoute>
-          } 
-        />
+        {/* Protected route */}
+        <Route path="cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+        <Route path="wishlist" element={<ProtectedRoute><WhishList /></ProtectedRoute>} />
       </Route>
 
       {/* routes for login and signup */}

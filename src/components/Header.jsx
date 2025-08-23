@@ -11,10 +11,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearUser } from "../Apps/Reducers/UserSlice";
 import hetkologo from "../assets/images/Home/logo.png";
 
+
 function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const user = useSelector((state) => state.user.user);
   const cartCount = useSelector((state) => state.cart.count);
+  const wishlistCount = useSelector((state) => state.wishlist.items.length);
+
   const dispatch = useDispatch();
 
   // ✅ Logout handler: clear session but stay on same page
@@ -22,7 +25,7 @@ function Header() {
     dispatch(clearUser());
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    // ❌ Do NOT navigate → header updates and page stays
+    
   };
 
   return (
@@ -33,13 +36,13 @@ function Header() {
           <div className="container flex flex-col gap-2 px-3 py-2 text-white md:flex-row md:justify-between md:items-center">
             {/* Left contact info */}
             <div className="flex items-center gap-8">
-              <div className="flex items-center gap-2 cursor-pointer ">
+              <div className="flex items-center gap-1 md:gap-4 cursor-pointer ">
                 <CiMail />
                 <a href="mailto:hetkofurniture@gmail.com">
                   <p>hetkofurniture@gmail.com</p>
                 </a>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 <MdOutlinePhoneInTalk className="cursor-pointer" />
                 <a href="tel:+1234567890"> +977 9816413787</a>
               </div>
@@ -56,22 +59,23 @@ function Header() {
                   <p>USD</p>
                   <FaChevronDown />
                 </div>
+                
                 <div className="flex items-center gap-2">
-                  <p>Wishlist</p>
-                  <FaRegHeart />
+                 <Link to="/wishlist">
+                    <button className="flex items-center gap-1 relative">
+                      <span>Wishlist</span>
+                      <FaRegHeart />
+                      {wishlistCount > 0 && (
+                        <span className="absolute -top-2 -right-2 flex items-center justify-center h-4 w-4 text-xs text-white bg-red-500 rounded-full">
+                          {wishlistCount}
+                        </span>
+                      )}
+                    </button>
+                  </Link>
                 </div>
               </div>
 
-              {/* Login / Logout */}
-              <button
-                onClick={user ? handleLogout : undefined}
-                className="flex items-center gap-2 cursor-pointer hover:text-pink-500"
-              >
-                <p>{user ? "Logout" : <Link to="/login">Login</Link>}</p>
-                <FaRegUser />
-              </button>
-
-              {/* Cart */}
+                   {/* Cart */}
               <div className="relative h-[40px] w-[40px] md:h-[50px] md:w-[50px] flex items-center justify-center rounded cursor-pointer">
                 <Link
                   to="/cart"
@@ -85,6 +89,17 @@ function Header() {
                   )}
                 </Link>
               </div>
+
+              {/* Login / Logout */}
+              <button
+                onClick={user ? handleLogout : undefined}
+                className="flex items-center cursor-pointer hover:text-pink-500"
+              >
+                <p>{user ? "Logout" : <Link to="/login">Login</Link>}</p>
+                <FaRegUser />
+              </button>
+
+         
             </div>
           </div>
         </div>
