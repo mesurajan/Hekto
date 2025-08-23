@@ -125,15 +125,6 @@ function Header() {
                       : "text-black hover:text-[#0A174E]"
                    }>Blogs
                 </NavLink></li>
-
-            <li className="cursor-pointer">
-              <NavLink to="shop" className={({ isActive }) =>
-                    isActive
-                      ? "text-[#0A174E] font-semibold border-b-2 border-[#0A174E] pb-1"
-                      : "text-black hover:text-[#0A174E]"
-                   }
-                   > Shop</NavLink>
-            </li>
            
             <li className="cursor-pointer">
               <NavLink to='Contact'className={({ isActive }) =>
@@ -196,14 +187,7 @@ function Header() {
                     }>Blogs
                   </NavLink></li>
 
-              <li className="cursor-pointer">
-                <NavLink to="shop" className={({ isActive }) =>
-                      isActive
-                        ? "text-[#0A174E] font-semibold border-b-2 border-[#0A174E] pb-1"
-                        : "text-black hover:text-[#0A174E]"
-                    }
-                    > Shop</NavLink>
-              </li>
+         
             
               <li className="cursor-pointer">
                 <NavLink to='Contact'className={({ isActive }) =>

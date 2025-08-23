@@ -24,6 +24,21 @@ function Blogs() {
         <AppBreadcrumbs />
       </div>
 
+     <div className='px-2 py-2'>
+      <header>
+        <h1 className='px-2 mt-2 text-xl md:text-3xl font-bold text-[#0A174E]'>
+          Where Design Meets Comfort 🛋️
+        </h1>
+        <p className='px-2 mt-2 text-gray-700 text-sm md:text-base text-justify'>
+          Explore curated ideas, tips, and inspiration to create spaces that are both stylish and cozy. 
+          Every corner of your home can reflect your personality while keeping comfort at its heart. 
+          From modern minimalism to warm, inviting nooks, we showcase designs that spark creativity. 
+          Let your space tell a story that’s uniquely yours, combining beauty, function, and comfort.
+        </p>
+      </header>
+    </div>
+
+
       {/* Body starts */}
       <div className='flex flex-col md:flex-row gap-8 px-4 py-8 mt-6 md:mt-10'>
         {/* Left side (Blog content) */}
@@ -194,7 +209,7 @@ function Blogs() {
         </div>
 
         {/* Right side (Sidebar) */}
-        <div className='w-full md:w-1/4 flex flex-col md:gap-8 md:py-4'>
+        <div className='w-full md:w-1/4 flex flex-col md:gap-8 md:py-4 gap-4'>
           {/* Sale Products */}
           <div className='border p-4 rounded-lg shadow-sm'>
             <h3 className='font-semibold mb-3 text-2xl'>Sale Products</h3>
@@ -351,8 +366,75 @@ function Blogs() {
         </div>
 
         {/* Right side (Sidebar) */}
-        <div className='w-full md:w-1/4 flex flex-col md:gap-8 md:py-4'>
-       {/* Tags */}
+        <div className='w-full md:w-1/4 flex flex-col md:gap-8 md:py-4 gap-4'>
+          {/* Discounted Products */}
+            <div className='border p-4 rounded-lg shadow-sm'>
+              <h3 className='font-semibold mb-3 text-2xl'>Discounted Products</h3>
+                <ul className='space-y-3 text-sm text-gray-600'>
+                <li className="flex items-start space-x-3">
+                    <img 
+                      src={post01}
+                      alt="icon" 
+                      className="w-16 h-18 object-cover rounded-lg flex-shrink-0"
+                    />
+                    <div className="flex-1">
+                      <p className="text-gray-800 text-justify">
+                        ✨ "Your home deserves furniture that inspires comfort & elegance. 
+                        Discover our latest collection today!"<br></br>
+                        <span className="text-gray-400"> - Aug 09 2020</span>
+                      </p>
+                    </div>
+                  </li>
+
+                    <li className="flex items-start space-x-3">
+                    <img 
+                      src={post02}
+                      alt="icon" 
+                      className="w-16 h-16 object-cover rounded-lg flex-shrink-0"
+                    />
+                    <div className="flex-1">
+                      <p className="text-gray-800 text-justify">
+                        🛋️ "A sofa is not just a seat—it’s where memories are made. 
+                        Find yours now.<br></br>
+                        <span className="text-gray-400"> - Aug 11 2025</span>
+                      </p>
+                    </div>
+                  </li>
+
+
+                    <li className="flex items-start space-x-3">
+                    <img 
+                      src={post03}
+                      alt="icon" 
+                      className="w-16 h-18 object-cover rounded-lg flex-shrink-0"
+                    />
+                    <div className="flex-1">
+                      <p className="text-gray-800 text-justify">
+                        🌿 "Turn your patio into a relaxing paradise with our 
+                        outdoor furniture range."<br></br>
+                        <span className="text-gray-400"> - Aug 13 2025</span>
+                      </p>
+                    </div>
+                  </li>
+                    <li className="flex items-start space-x-3">
+                    <img 
+                      src={post04}
+                      alt="icon" 
+                      className="w-16 h-18 object-cover rounded-lg flex-shrink-0"
+                    />
+                    <div className="flex-1">
+                      <p className="text-gray-800 text-justify">
+                        🛏️ "Sleep better, live better. Explore bedroom furniture designed
+                        for true comfort."<br></br>
+                        <span className="text-gray-400"> - Aug 15 2025</span>
+                      </p>
+                    </div>
+                  </li>
+              </ul>
+            </div>
+
+
+        {/* Tags */}
         <div className='border p-4 rounded-lg shadow-sm'>
           <h3 className='font-semibold mb-3 text-2xl'>Tags We Adore ✨</h3>
           <ul className='space-y-2 text-gray-700'>
@@ -364,7 +446,8 @@ function Blogs() {
             <li>Dreamy Nooks (9)</li>
           </ul>
         </div>
-      </div>
+
+        </div>
 
       </div>
     </div>

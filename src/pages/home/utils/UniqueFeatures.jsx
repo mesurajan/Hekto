@@ -1,6 +1,29 @@
 import React from 'react'
 import BigSofa from "../../../assets/images/chairs/Bigsofa.png";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../Apps/Reducers/cartSlice"; 
+
 function UniqueFeatures() {
+  const dispatch = useDispatch();
+
+
+  const product = {
+    id: 1,
+    title: "B&B Italian Sofa",
+    price: 32.00,
+    chairimage: BigSofa,
+  };
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      chairimage: product.chairimage,
+    }));
+  };
+  
+  
   return (
     <div>
          {/* Unique Features  */}
@@ -36,7 +59,12 @@ function UniqueFeatures() {
           <div className="sm:mt-6 flex flex-row items-center justify-centre gap-10 py-[25px] ">
           {/* Button */}
           <div>
-            <button className="primary-btn sm:py-10 md:py-4 md:px-12 ">Add to Cart</button>
+            <button
+                onClick={handleAddToCart}
+                className="primary-btn sm:py-10 md:py-4 md:px-12"
+              >
+                Add to Cart
+            </button>
           </div>
 
           {/* Title & Price */}

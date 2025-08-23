@@ -3,13 +3,17 @@ import { Link } from 'react-router-dom';
 import AppBreadcrumbs from '../../components/Breadcrumbs';
 import { Products } from '../../assets/productmockdata';
 import { CiSearch } from 'react-icons/ci';
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../Apps/Reducers/cartSlice";
+import { FaRegHeart } from "react-icons/fa";
+import { BsCart } from "react-icons/bs";
 
-function Product() {
+
+function Product({ onAddToWishlist  }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const categories = ['all', 'chairs', 'beds', 'tables', 'wardrobes'];
-
-  // Filter products by search term
+  const dispatch = useDispatch();
   const searchFilteredProducts = Products.filter(product =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -21,6 +25,18 @@ function Product() {
     return acc;
   }, {});
 
+    const handleAddToCart = (product) => {
+        dispatch(
+          addToCart({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            chairimage: product.chairimage,
+          })
+        );
+      };
+  
+
   return (
     <div className='bg-white container text-[#0A174E] mb-15'>
       {/* Page Title + Breadcrumb */}
@@ -29,64 +45,52 @@ function Product() {
         <AppBreadcrumbs />
       </div>
 
-      {/* Intro Section */}
-        <div className='mt-10 md:mt-20 mb-6 md:mb-12 flex flex-col px-4'>
-          <header>
-            <h1 className='font-bold text-2xl md:text-3xl'>
-              Explore Premium Furniture & Trendy Home Accessories
-            </h1>
-          </header>
-          <p className='mt-3 text-gray-600 max-w-3xl text-sm md:text-base leading-relaxed text-justify'>
-            Discover a curated collection of stylish furniture and home essentials 
-            designed to complement every corner of your living space. From timeless 
-            classics to modern trends, our range is carefully selected to bring both 
-            comfort and elegance into your home. Whether you're furnishing your living 
-            room, bedroom, or workspace, we have something to match your style and 
-            elevate your everyday living.
+        {/* Search + Category Selector */}
+        <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 px-2 md:px-0 w-full">
+          {/* Curated Text */}
+          <p className="text-xl md:text-3xl font-semibold px-2 md:px-4 md:text-left py-2 md:py-8">
+            Curated Collection of Stylish Furniture
           </p>
-        </div>
 
-      {/* Search + Category Selector */}
-      <div className="flex flex-row md:items-center gap-4 md:gap-6 px-4 md:px-0">
-        {/* Curated Text */}
-        <p className="text-xl font-semibold hidden md:block whitespace-nowrap px-4">
-          Curated Collection of Stylish Furniture
-        </p>
+          {/* Search + Category Wrapper */}
+          <div className="flex flex-row w-full gap-2 md:flex-1 md:justify-end">
+            {/* Search Bar */}
+            <div className="flex items-center flex-1 md:flex-initial md:max-w-[300px]">
+              <input
+                type="text"
+                className="h-10 px-3 border-2 focus:outline-none flex-1 rounded-l-md"
+                placeholder="Search Products"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <div className="flex items-center justify-center h-10 px-3 cursor-pointer bg-background rounded-r-md">
+                <CiSearch color="white" size={20} />
+              </div>
+            </div>
 
-        {/* Search Bar */}
-        <div className="flex items-center gap-0 md:ml-4 md:flex-1 md:justify-end">
-          <input
-            type="text"
-            className="h-8 px-2 border-2 focus:outline-none min-w-0 max-w-[300px]"
-            placeholder="Search Products"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <div className="flex items-center justify-center h-8 px-3 cursor-pointer bg-background">
-            <CiSearch color="white" size={20} />
+            {/* Category Dropdown */}
+            <div className="w-[45%] md:w-auto">
+              <label htmlFor="categories" className="sr-only">Select Category</label>
+              <select
+                id="categories"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full md:w-auto border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-600"
+              >
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
 
-        {/* Category Dropdown */}
-        <div className="min-w-0 max-w-[300px] md:ml-4">
-          <label htmlFor="categories" className="sr-only">Select Category</label>
-          <select
-            id="categories"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="w-full md:w-auto border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-600"
-          >
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat.charAt(0).toUpperCase() + cat.slice(1)}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
+
 
       {/* Products Section */}
-      <div className="mt-6 px-4 md:px-4 space-y-12 py-8 md:py-20">
+      <div className="mt-6 px-4 md:px-4 space-y-12 py-4 md:py-8">
         {selectedCategory === 'all' ? (
           // Show grouped by category
           <>
@@ -102,8 +106,25 @@ function Product() {
                     {items.map((product) => (
                       <div
                         key={product.id}
-                        className="flex flex-col items-center p-4 rounded bg-background-secondary hover:border-2 hover:border-blue-900 transition-all duration-300"
+                        className="relative flex flex-col items-center p-4 rounded bg-background-secondary hover:border-2 hover:border-blue-900 transition-all duration-300"
                       >
+                  <div className="absolute top-2 right-2 flex gap-2">
+                    <button
+                      onClick={() => onAddToWishlist?.(product)}
+                      className="p-2 bg-white rounded-full shadow hover:bg-pink-100"
+                      title="Add to Wishlist"
+                    >
+                      <FaRegHeart className="text-pink-500" />
+                    </button>
+                    <button
+                      onClick={() => handleAddToCart(product)} 
+                      className="p-2 bg-white rounded-full shadow hover:bg-blue-100"
+                      title="Add to Cart"
+                    >
+                      <BsCart className="text-blue-600" />
+                    </button>
+                  </div>
+                        
                         <img
                           src={product.chairimage}
                           alt={product.title}

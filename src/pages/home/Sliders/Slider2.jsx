@@ -3,10 +3,15 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
+import { FaRegHeart } from "react-icons/fa";
+import { BsCart } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../Apps/Reducers/cartSlice";
 
-function SimpleSlider2({ BannerData = [] }) {
+function SimpleSlider2({ BannerData = [], onAddToWishlist }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
+  const dispatch = useDispatch();
 
   const settings = {
     dots: true,
@@ -29,10 +34,7 @@ function SimpleSlider2({ BannerData = [] }) {
               className={`cursor-pointer transition-colors duration-300 rounded-sm ${
                 isActive ? "bg-[#0A174E]" : "bg-gray-400"
               }`}
-              style={{
-                width: "16px",
-                height: "4px",
-              }}
+              style={{ width: "16px", height: "4px" }}
             />
           );
         })}
@@ -41,6 +43,18 @@ function SimpleSlider2({ BannerData = [] }) {
   };
 
   if (!BannerData.length) return null;
+
+  // ✅ Add to cart handler
+  const handleAddToCart = (chair) => {
+    dispatch(
+      addToCart({
+        id: chair.id,
+        title: chair.title,
+        price: chair.price,
+        chairimage: chair.chairimage,
+      })
+    );
+  };
 
   return (
     <div className="px-4 mx-auto slider-container max-w-7xl md:px-0">
@@ -51,8 +65,26 @@ function SimpleSlider2({ BannerData = [] }) {
               {slide.chairs.map((chair) => (
                 <div
                   key={chair.id}
-                  className="flex flex-col items-center justify-center p-4 rounded bg-background-secondary hover:border-2 hover:border-blue-900"
+                  className="relative flex flex-col items-center justify-center p-4 rounded bg-background-secondary hover:border-2 hover:border-blue-900"
                 >
+                  {/* Wishlist + Cart icons (top-right) */}
+                  <div className="absolute top-2 right-2 flex gap-2">
+                    <button
+                      onClick={() => onAddToWishlist?.(chair)}
+                      className="p-2 bg-white rounded-full shadow hover:bg-pink-100"
+                      title="Add to Wishlist"
+                    >
+                      <FaRegHeart className="text-pink-500" />
+                    </button>
+                    <button
+                      onClick={() => handleAddToCart(chair)} // ✅ calls Redux addToCart
+                      className="p-2 bg-white rounded-full shadow hover:bg-blue-100"
+                      title="Add to Cart"
+                    >
+                      <BsCart className="text-blue-600" />
+                    </button>
+                  </div>
+
                   <img
                     src={chair.chairimage}
                     alt={chair.title}
@@ -62,17 +94,17 @@ function SimpleSlider2({ BannerData = [] }) {
                     <h3 className="text-sm font-semibold">{chair.title}</h3>
                     <p className="text-xs text-gray-600">{chair.price}</p>
                   </div>
+
+                  {/* View Details */}
                   <Link to={`/productDetails/${chair.id}`}>
-                  <button className="mt-6 primary-btn">View details</button>
-                </Link>
+                    <button className="mt-6 primary-btn">View details</button>
+                  </Link>
                 </div>
               ))}
             </div>
           </div>
         ))}
       </Slider>
-
-      
     </div>
   );
 }

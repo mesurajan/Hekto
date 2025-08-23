@@ -3,10 +3,16 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../Apps/Reducers/cartSlice";
+import { FaRegHeart } from "react-icons/fa";
+import { BsCart } from "react-icons/bs";
 
-function TopCategories({ BannerData = [] }) {
+
+function TopCategories({ BannerData = [], onAddToWishlist  }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
+  const dispatch = useDispatch();
 
   const settings = {
     dots: true,
@@ -42,6 +48,17 @@ function TopCategories({ BannerData = [] }) {
 
   if (!BannerData.length) return null;
 
+      const handleAddToCart = (chair) => {
+      dispatch(
+        addToCart({
+          id: chair.id,
+          title: chair.title,
+          price: chair.price,
+          chairimage: chair.chairimage,
+        })
+      );
+    };
+
   return (
     <div className="px-4 mx-auto slider-container max-w-7xl md:px-0">
       <div>
@@ -54,8 +71,25 @@ function TopCategories({ BannerData = [] }) {
               {slide.chairs.map((chair) => (
                 <div
                   key={chair.id}
-                  className="flex flex-col items-center justify-center p-4 rounded bg-background-secondary hover:border-2 hover:border-blue-900"
+                  className="relative flex flex-col items-center justify-center p-4 rounded bg-background-secondary hover:border-2 hover:border-blue-900"
                 >
+                  <div className="absolute top-2 right-2 flex gap-2">
+                    <button
+                      onClick={() => onAddToWishlist?.(chair)}
+                      className="p-2 bg-white rounded-full shadow hover:bg-pink-100"
+                      title="Add to Wishlist"
+                    >
+                      <FaRegHeart className="text-pink-500" />
+                    </button>
+                    <button
+                      onClick={() => handleAddToCart(chair)} 
+                      className="p-2 bg-white rounded-full shadow hover:bg-blue-100"
+                      title="Add to Cart"
+                    >
+                      <BsCart className="text-blue-600" />
+                    </button>
+                  </div>
+
                   <img
                     src={chair.chairimage}
                     alt={chair.title}

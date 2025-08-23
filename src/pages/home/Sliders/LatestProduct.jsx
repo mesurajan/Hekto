@@ -4,11 +4,15 @@ import { latestProducts } from "../../../assets/mockdata"; // adjust path if nee
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../Apps/Reducers/cartSlice";
+import { FaRegHeart } from "react-icons/fa";
+import { BsCart } from "react-icons/bs";
 
-function LatestProductSlider() {
+function LatestProductSlider({ onAddToWishlist }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
-
+  const dispatch = useDispatch();
   const navItems = ["New Arrivals", "Best Seller", "Featured", "Special Offer"];
 
   const settings = {
@@ -23,7 +27,20 @@ function LatestProductSlider() {
     beforeChange: (_, next) => setCurrentSlide(next),
   };
 
+
+
   if (!latestProducts.length) return null;
+
+    const handleAddToCart = (chair) => {
+    dispatch(
+      addToCart({
+        id: chair.id,
+        title: chair.title,
+        price: chair.price,
+        chairimage: chair.chairimage,
+      })
+    );
+  };
 
   return (
     <div className="px-4 mx-auto slider-container max-w-7xl md:px-0">
@@ -66,8 +83,24 @@ function LatestProductSlider() {
                     .map((chair) => (
                       <div
                         key={chair.id}
-                        className="flex flex-col items-center justify-center p-4 rounded bg-background-secondary hover:border-2 hover:border-blue-900"
+                        className="relative flex flex-col items-center justify-center p-4 rounded bg-background-secondary hover:border-2 hover:border-blue-900"
                       >
+                  <div className="absolute top-2 right-2 flex gap-2">
+                    <button
+                      onClick={() => onAddToWishlist?.(chair)}
+                      className="p-2 bg-white rounded-full shadow hover:bg-pink-100"
+                      title="Add to Wishlist"
+                    >
+                      <FaRegHeart className="text-pink-500" />
+                    </button>
+                    <button
+                      onClick={() => handleAddToCart(chair)} // ✅ calls Redux addToCart
+                      className="p-2 bg-white rounded-full shadow hover:bg-blue-100"
+                      title="Add to Cart"
+                    >
+                      <BsCart className="text-blue-600" />
+                    </button>
+                  </div>
                         <img
                           src={chair.chairimage}
                           alt={chair.title}
