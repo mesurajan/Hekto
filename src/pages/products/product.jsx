@@ -8,12 +8,13 @@ import { addToCart } from "../../Apps/Reducers/cartSlice";
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart } from "react-icons/bs";
 import BrandPromotion from "../../assets/images/Home/BrandPromotion.png"; 
-
+import { useNavigate } from "react-router-dom";
 function Product({ onAddToWishlist  }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const categories = ['all', 'chairs', 'beds', 'tables', 'wardrobes'];
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const searchFilteredProducts = Products.filter(product =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -25,16 +26,24 @@ function Product({ onAddToWishlist  }) {
     return acc;
   }, {});
 
-    const handleAddToCart = (product) => {
-        dispatch(
-          addToCart({
-            id: product.id,
-            title: product.title,
-            price: product.price,
-            chairimage: product.chairimage,
-          })
-        );
-      };
+const handleAddToCart = (product) => {
+
+  const token = localStorage.getItem("token");
+  if (!token) {
+  alert("Please login to add products to your cart!");
+    navigate("/login");
+    return;
+  }
+
+  dispatch(
+    addToCart({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      chairimage: product.chairimage,
+    })
+  );
+};
   
 
   return (

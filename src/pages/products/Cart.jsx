@@ -2,6 +2,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, clearCart } from "../../Apps/Reducers/cartSlice";
+import EmptyCartImg from "../../assets/images/empty-cart.png";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const { items, totalPrice } = useSelector(state => state.cart);
@@ -12,7 +14,23 @@ function Cart() {
       <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
 
       {items.length === 0 ? (
-        <p>Your cart is empty.</p>
+         <div className="flex flex-col items-center justify-center py-20">
+          <img
+            src={EmptyCartImg}
+            alt="Empty Cart"
+            className="w-60 h-60 object-contain mb-6"
+          />
+          <h2 className="text-2xl font-semibold text-[#0A174E] mb-2">Your cart is empty</h2>
+          <p className="text-gray-500 mb-4 text-center">
+            Looks like you haven’t added anything to your cart yet.
+          </p>
+          <Link
+            to="/product"
+            className="px-6 py-3 bg-blue-900 text-white rounded hover:bg-blue-800 transition"
+          >
+            Go Shopping
+          </Link>
+        </div>
       ) : (
         <>
           <div className="flex flex-col gap-4">

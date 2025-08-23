@@ -6,11 +6,13 @@ import { latestProducts } from "../../assets/mockdata";
 import { addToCart } from "../../Apps/Reducers/cartSlice"; 
 import { Products } from "../../assets/productmockdata";
 import { TopCategory } from "../../assets/mockdata";
+import { useNavigate } from "react-router-dom";
+
 
 function ProductDetails() { 
   const { id } = useParams();
   const productId = parseInt(id);
-
+  const navigate = useNavigate();
   // Combine products from both sources
   const allLatest = latestProducts.flatMap(group => group.chairs);
   const allTopCategories = TopCategory.flatMap(group => group.chairs);
@@ -30,16 +32,26 @@ function ProductDetails() {
     );
   }
 
-  // ✅ Add-to-cart handler
-  const handleAddToCart = () => {
-    dispatch(addToCart({
+
+const handleAddToCart = (product) => {
+
+  const token = localStorage.getItem("token");
+  if (!token) {
+  alert("Please login to add products to your cart!");
+    navigate("/login");
+    return;
+  }
+
+  dispatch(
+    addToCart({
       id: product.id,
       title: product.title,
       price: product.price,
       chairimage: product.chairimage,
-    }));
-  };
-
+    })
+  );
+};
+  
   return (
     <div className='bg-white'>
       {/* Header with Breadcrumbs */}

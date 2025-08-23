@@ -6,23 +6,23 @@ import { BsCart } from "react-icons/bs";
 import { FaChevronDown, FaRegUser } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { clearUser } from "../Apps/Reducers/UserSlice";
 import hetkologo from "../assets/images/Home/logo.png";
 
 function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const user = useSelector((state) => state.user.user); // ✅ user object from Redux
+  const user = useSelector((state) => state.user.user);
   const cartCount = useSelector((state) => state.cart.count);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  // ✅ Logout handler
+  // ✅ Logout handler: clear session but stay on same page
   const handleLogout = () => {
     dispatch(clearUser());
-    localStorage.removeItem("token"); // remove token if stored
-    navigate("/login");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    // ❌ Do NOT navigate → header updates and page stays
   };
 
   return (
@@ -62,12 +62,12 @@ function Header() {
                 </div>
               </div>
 
-              {/* ✅ Login / Logout */}
+              {/* Login / Logout */}
               <button
-                onClick={user ? handleLogout : () => navigate("/login")}
+                onClick={user ? handleLogout : undefined}
                 className="flex items-center gap-2 cursor-pointer hover:text-pink-500"
               >
-                <p>{user ? "Logout" : "Login"}</p>
+                <p>{user ? "Logout" : <Link to="/login">Login</Link>}</p>
                 <FaRegUser />
               </button>
 

@@ -1,9 +1,7 @@
 import React, { useState, useRef } from "react";
 import Slider from "react-slick";
 import { latestProducts } from '../../../assets/latestProducts ';
-
- 
-
+import { useNavigate } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
@@ -17,7 +15,7 @@ function LatestProductSlider({ onAddToWishlist }) {
   const sliderRef = useRef(null);
   const dispatch = useDispatch();
   const navItems = ["New Arrivals", "Best Seller", "Featured", "Special Offer"];
-
+const navigate = useNavigate();
   const settings = {
     dots: false,
     arrows: false,
@@ -34,16 +32,23 @@ function LatestProductSlider({ onAddToWishlist }) {
 
   if (!latestProducts.length) return null;
 
-    const handleAddToCart = (chair) => {
-    dispatch(
-      addToCart({
-        id: chair.id,
-        title: chair.title,
-        price: chair.price,
-        chairimage: chair.chairimage,
-      })
-    );
-  };
+   const handleAddToCart = (chair) => {
+     const token = localStorage.getItem("token");
+     if (!token) {
+       alert("Please login to add products to your cart!");
+       navigate("/login");
+       return;
+     }
+ 
+     dispatch(
+       addToCart({
+         id: chair.id,
+         title: chair.title,
+         price: chair.price,
+         chairimage: chair.chairimage,
+       })
+     );
+   };
 
   return (
     <div className="px-4 mx-auto slider-container max-w-7xl md:px-0">

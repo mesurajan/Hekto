@@ -1,11 +1,14 @@
-import React from 'react'
+// src/components/Home/UniqueFeatures.jsx
+import React from 'react';
 import BigSofa from "../../../assets/images/chairs/Bigsofa.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../Apps/Reducers/cartSlice"; 
+import { useNavigate } from "react-router-dom";
 
 function UniqueFeatures() {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user.user); // ✅ get logged-in user
 
   const product = {
     id: 1,
@@ -15,13 +18,20 @@ function UniqueFeatures() {
   };
 
   const handleAddToCart = () => {
+    if (!user) {
+   alert("Please login to add products to your cart!");
+      navigate("/login");
+      return;
+    }
+
+    // ✅ add to cart if user is logged in
     dispatch(addToCart({
       id: product.id,
       title: product.title,
       price: product.price,
       chairimage: product.chairimage,
     }));
-  };
+  };;
   
   
   return (

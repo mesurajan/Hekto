@@ -7,12 +7,13 @@ import { FaRegHeart } from "react-icons/fa";
 import { BsCart } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../Apps/Reducers/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 function SimpleSlider2({ BannerData = [], onAddToWishlist }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const settings = {
     dots: true,
     arrows: false,
@@ -44,8 +45,14 @@ function SimpleSlider2({ BannerData = [], onAddToWishlist }) {
 
   if (!BannerData.length) return null;
 
-  // ✅ Add to cart handler
   const handleAddToCart = (chair) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Please login to add products to your cart!");
+      navigate("/login");
+      return;
+    }
+
     dispatch(
       addToCart({
         id: chair.id,

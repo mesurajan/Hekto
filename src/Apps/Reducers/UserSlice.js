@@ -1,22 +1,26 @@
-// src/Apps/Reducers/UserSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
+// ✅ Try to load user from localStorage on page load
+const storedUser = localStorage.getItem("user")
+  ? JSON.parse(localStorage.getItem("user"))
+  : null;
+
 const initialState = {
-  user: null, // No user logged in by default
+  user: storedUser,
 };
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
     setUser: (state, action) => {
-      state.user = action.payload; 
+      state.user = action.payload;
     },
     clearUser: (state) => {
-      state.user = null; 
+      state.user = null;
     },
   },
 });
 
-export const { setUser, clearUser } = userSlice.actions; 
+export const { setUser, clearUser } = userSlice.actions;
 export default userSlice.reducer;
