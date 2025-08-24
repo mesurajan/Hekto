@@ -1,23 +1,41 @@
 // src/pages/Cart.jsx
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, clearCart } from "../../Apps/Reducers/cartSlice";
 import EmptyCartImg from "../../assets/images/empty-cart.png";
 import { Link } from "react-router-dom";
 import AppBreadcrumbs from '../../components/Breadcrumbs';
+
 function Cart() {
-  const { items, totalPrice } = useSelector(state => state.cart);
+  const { items } = useSelector(state => state.cart); // removed totalPrice from selector
   const dispatch = useDispatch();
 
+  const [shippingInfo, setShippingInfo] = useState({
+    country: "",
+    city: "",
+    postal: ""
+  });
+
+  const handleShippingChange = (e) => {
+    setShippingInfo({ ...shippingInfo, [e.target.name]: e.target.value });
+  };
+
+  const handleCalculateShipping = () => {
+    alert(`Shipping calculated for ${shippingInfo.country}, ${shippingInfo.city}, ${shippingInfo.postal}`);
+  };
+
+  // Calculate total price safely
+  const totalPrice = items.reduce((acc, item) => acc + (parseFloat(item.price.replace('$','')) * item.quantity), 0);
+
   return (
-    <div className="bg-white container text-[#0A174E] mb-15">
-    <div className='bg-backgroundlite py-4'>
+    <div className="bg-white container mx-auto text-[#0A174E] mb-10 px-4 md:px-0">
+      <div className='bg-backgroundlite py-4 px-4 md:px-0'>
         <h1 className='text-3xl font-bold px-4'>Your Cart</h1>
         <AppBreadcrumbs />
       </div>
 
       {items.length === 0 ? (
-         <div className="flex flex-col items-center justify-center py-20">
+        <div className="flex flex-col items-center justify-center py-20">
           <img
             src={EmptyCartImg}
             alt="Empty Cart"
@@ -35,38 +53,101 @@ function Cart() {
           </Link>
         </div>
       ) : (
-        <>
-          <div className="flex flex-col gap-4">
+        <div className="flex flex-col md:flex-row gap-6 mt-6">
+          {/* Left: Cart Items */}
+          <div className="flex-1 flex flex-col gap-4">
             {items.map(item => (
-              <div key={item.id} className="flex items-center justify-between p-4 border rounded">
-                <div className="flex items-center gap-4">
-                  <img src={item.chairimage} alt={item.title} className="w-20 h-20 object-cover" />
+              <div key={item.id} className="flex flex-col md:flex-row justify-between items-center p-4 border rounded">
+                <div className="flex items-center gap-4 w-full md:w-auto">
+                  <img src={item.chairimage} alt={item.title} className="w-25 h-25 object-cover bg-backgroundlite" />
                   <div>
                     <h2 className="font-semibold">{item.title}</h2>
-                    <p>Price: {item.price}</p>
-                    <p>Quantity: {item.quantity}</p>
+                    <p className="text-gray-500 text-sm">Color: Brown</p>
+                    <p className="text-gray-500 text-sm">Size: XL</p>
                   </div>
                 </div>
-                <button
-                  className="px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600"
-                  onClick={() => dispatch(removeFromCart(item.id))}
-                >
-                  Remove
-                </button>
+
+                {/* Price & Quantity */}
+                <div className="flex items-center gap-4 mt-2 md:mt-0">
+                  <p className="font-semibold">{item.price}</p>
+                  <div className="flex items-center gap-2 border rounded px-2">
+                    <span>{item.quantity}</span>
+                  </div>
+                  <p className="font-semibold">{(parseFloat(item.price.replace('$','')) * item.quantity).toFixed(2)}</p>
+                  <button
+                    className="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-600"
+                    onClick={() => dispatch(removeFromCart({ id: item.id }))}
+                  >
+                    ✕
+                  </button>
+                </div>
               </div>
             ))}
+
+            {/* Cart Actions */}
+            <div className="flex gap-4 mt-4">
+              <button
+                className="px-6 py-2 bg-background text-white rounded hover:bg-background"
+                onClick={() => dispatch(clearCart())}
+              >
+                Clear Cart
+              </button>
+            </div>
           </div>
 
-          <div className="mt-6 flex justify-between items-center">
-            <p className="text-xl font-bold">Total: ${totalPrice}</p>
-            <button
-              className="px-6 py-2 text-white bg-blue-900 rounded hover:bg-blue-800"
-              onClick={() => dispatch(clearCart())}
-            >
-              Clear Cart
-            </button>
+          {/* Right: Cart Totals & Shipping */}
+          <div className="md:w-1/3 flex flex-col gap-6 mt-6 md:mt-0">
+            <div className="p-4 border rounded">
+              <h3 className="font-semibold mb-4 text-lg">Cart Totals</h3>
+              <div className="flex justify-between mb-2">
+                <span>Subtotals:</span>
+                <span>${totalPrice.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between mb-2">
+                <span>Totals:</span>
+                <span>${(totalPrice*1.49).toFixed(2)}</span>
+              </div>
+              <p className="text-green-500 text-sm mb-4">Shipping & taxes calculated at checkout</p>
+              <button className="w-full py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                Proceed To Checkout
+              </button>
+            </div>
+
+            <div className="p-4 border rounded">
+              <h3 className="font-semibold mb-4 text-lg">Calculate Shipping</h3>
+              <input
+                type="text"
+                placeholder="Country"
+                name="country"
+                value={shippingInfo.country}
+                onChange={handleShippingChange}
+                className="w-full border px-2 py-1 mb-2 rounded"
+              />
+              <input
+                type="text"
+                placeholder="City / Postal"
+                name="city"
+                value={shippingInfo.city}
+                onChange={handleShippingChange}
+                className="w-full border px-2 py-1 mb-2 rounded"
+              />
+              <input
+                type="text"
+                placeholder="Postal Code"
+                name="postal"
+                value={shippingInfo.postal}
+                onChange={handleShippingChange}
+                className="w-full border px-2 py-1 mb-2 rounded"
+              />
+              <button
+               className="w-full py-2 bg-background text-white rounded transform transition-transform duration-300 hover:scale-102"
+                onClick={handleCalculateShipping}
+              >
+                Calculate Shipping
+              </button>
+            </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

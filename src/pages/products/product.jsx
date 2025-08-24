@@ -180,8 +180,24 @@ const handleAddToCart = (product) => {
               .map((product) => (
                 <div
                   key={product.id}
-                  className="flex flex-col items-center p-4 rounded bg-background-secondary hover:border-2 hover:border-blue-900 transition-all duration-300"
+                  className="relative flex-col items-center p-4 rounded bg-background-secondary hover:border-2 hover:border-blue-900 transition-all duration-300"
                 >
+                   <div className="absolute top-2 right-2 flex gap-2">
+                    <button
+                      onClick={() => handleAddToWishlist(product)}
+                      className="p-2 bg-white rounded-full shadow hover:bg-pink-100"
+                      title="Add to Wishlist"
+                    >
+                      <FaRegHeart className="text-pink-500" />
+                    </button>
+                    <button
+                      onClick={() => handleAddToCart(product)} 
+                      className="p-2 bg-white rounded-full shadow hover:bg-blue-100"
+                      title="Add to Cart"
+                    >
+                      <BsCart className="text-blue-600" />
+                    </button>
+                  </div>
                   <img
                     src={product.chairimage}
                     alt={product.title}
