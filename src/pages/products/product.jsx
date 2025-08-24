@@ -9,7 +9,9 @@ import { FaRegHeart } from "react-icons/fa";
 import { BsCart } from "react-icons/bs";
 import BrandPromotion from "../../assets/images/Home/BrandPromotion.png"; 
 import { useNavigate } from "react-router-dom";
-function Product({ onAddToWishlist  }) {
+import { addToWishlist } from "../../Apps/Reducers/wishlistSlice";
+
+function Product() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const categories = ['all', 'chairs', 'beds', 'tables', 'wardrobes'];
@@ -25,6 +27,16 @@ function Product({ onAddToWishlist  }) {
     acc[category] = searchFilteredProducts.filter(p => p.category === category);
     return acc;
   }, {});
+
+  const handleAddToWishlist = (product) => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Please login to add products to your Wishlist!");
+        navigate("/login");
+        return;
+      }
+      dispatch(addToWishlist(product));
+    };
 
 const handleAddToCart = (product) => {
 
@@ -58,7 +70,7 @@ const handleAddToCart = (product) => {
         <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 px-2 md:px-0 w-full">
           {/* Curated Text */}
           <p className="text-xl md:text-3xl font-semibold px-2 md:px-4 md:text-left py-2 md:py-8">
-            Curated Collection of Stylish Furniture
+            Our Collection of Stylish Furniture
           </p>
 
           {/* Search + Category Wrapper */}
@@ -119,7 +131,7 @@ const handleAddToCart = (product) => {
                       >
                   <div className="absolute top-2 right-2 flex gap-2">
                     <button
-                      onClick={() => onAddToWishlist?.(product)}
+                      onClick={() => handleAddToWishlist(product)}
                       className="p-2 bg-white rounded-full shadow hover:bg-pink-100"
                       title="Add to Wishlist"
                     >

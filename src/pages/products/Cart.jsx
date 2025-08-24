@@ -4,14 +4,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, clearCart } from "../../Apps/Reducers/cartSlice";
 import EmptyCartImg from "../../assets/images/empty-cart.png";
 import { Link } from "react-router-dom";
-
+import AppBreadcrumbs from '../../components/Breadcrumbs';
 function Cart() {
   const { items, totalPrice } = useSelector(state => state.cart);
   const dispatch = useDispatch();
 
   return (
-    <div className="container py-10 bg-white">
-      <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
+    <div className="bg-white container text-[#0A174E] mb-15">
+    <div className='bg-backgroundlite py-4'>
+        <h1 className='text-3xl font-bold px-4'>Your Cart</h1>
+        <AppBreadcrumbs />
+      </div>
 
       {items.length === 0 ? (
          <div className="flex flex-col items-center justify-center py-20">

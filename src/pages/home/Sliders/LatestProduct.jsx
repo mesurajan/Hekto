@@ -9,8 +9,9 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../../Apps/Reducers/cartSlice";
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart } from "react-icons/bs";
+import { addToWishlist } from "../../../Apps/Reducers/wishlistSlice";
 
-function LatestProductSlider({ onAddToWishlist }) {
+function LatestProductSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
   const dispatch = useDispatch();
@@ -31,6 +32,17 @@ const navigate = useNavigate();
 
 
   if (!latestProducts.length) return null;
+
+    const handleAddToWishlist = (chair) => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Please login to add products to your Wishlist!");
+        navigate("/login");
+        return;
+      }
+      dispatch(addToWishlist(chair));
+    };
+  
 
    const handleAddToCart = (chair) => {
      const token = localStorage.getItem("token");
@@ -95,7 +107,7 @@ const navigate = useNavigate();
                       >
                   <div className="absolute top-2 right-2 flex gap-2">
                     <button
-                      onClick={() => onAddToWishlist?.(chair)}
+                      onClick={() => handleAddToWishlist(chair)}
                       className="p-2 bg-white rounded-full shadow hover:bg-pink-100"
                       title="Add to Wishlist"
                     >
