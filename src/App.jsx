@@ -13,6 +13,7 @@ import Blogs from "./pages/Blogs";
 import Cart from './pages/products/Cart'; 
 import ProtectedRoute from './components/ProtectedRoute'; // import your protected route
 import WhishList from './pages/products/WhishList';
+import AdminDashboard from './pages/admin/AdminDashboard';
 
 
 function App() {
@@ -35,6 +36,9 @@ function App() {
       {/* routes for login and signup */}
       <Route path="login" element={<LoginForm />} />
       <Route path="signup" element={<SignupForm />} />
+
+      <Route path="admin" element={<AdminDashboard />} />
+
     </Routes>
   );
 }
