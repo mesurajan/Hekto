@@ -33,7 +33,7 @@ function SignupForm() {
 
         
         toast.success(
-          <div className='text-background'>
+          <div className='text-[#0A174E]'>
             Signup successful!
           </div>,
           { autoClose: 3000 }

@@ -37,7 +37,7 @@ function App() {
       <Route path="login" element={<LoginForm />} />
       <Route path="signup" element={<SignupForm />} />
 
-      <Route path="admin" element={<AdminDashboard />} />
+       <Route path="/admin"  element={ <ProtectedRoute> <AdminDashboard /> </ProtectedRoute> }/>
 
     </Routes>
   );

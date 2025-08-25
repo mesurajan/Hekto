@@ -32,7 +32,7 @@ function Header() {
     <div className="container">
       {/* Top Contact Bar */}
       <header className="text-sm ">
-        <div className="bg-background">
+        <div className="bg-[#0A174E]">
           <div className="container flex flex-col gap-2 px-3 py-2 text-white md:flex-row md:justify-between md:items-center">
             {/* Left contact info */}
             <div className="flex items-center gap-8">
@@ -171,7 +171,7 @@ function Header() {
               className="w-full h-8 px-2 border-2 focus:outline-none"
               placeholder="Search..."
             />
-            <div className="flex items-center justify-center h-8 px-3 cursor-pointer bg-background">
+            <div className="flex items-center justify-center h-8 px-3 cursor-pointer bg-[#0A174E]">
               <CiSearch color="white" size={20} />
             </div>
           </div>

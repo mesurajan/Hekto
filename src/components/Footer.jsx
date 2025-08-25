@@ -17,7 +17,7 @@ function Footer() {
         
         <div className='mt-4 space-y-4'>
           <div className='flex items-center'>
-              <input placeholder='Enter Your Email' className='h-10 px-2 border'></input>
+              <input placeholder='Enter Your Email' className='h-10 px-2 border border-[#0A174E]  focus:outline-none focus:ring-1 focus:ring-[#0A174E]'></input>
               <Link to ="signup">
                 <button button className='h-10 px-6 primary-btn hover:bg-primary-btn whitespace-nowrap '>Sign up</button>
               </Link>

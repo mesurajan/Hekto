@@ -64,20 +64,23 @@ export function AdminSidebar() {
 
   const getNavCls = (active) =>
     active
-      ? "bg-primary/10 text-primary font-medium border-r-2 border-primary"
-      : "hover:bg-muted/50 text-muted-foreground hover:text-foreground";
+      ? "bg-blue-800/40 text-white font-medium border-r-2 border-blue-400"
+      : "hover:bg-blue-700/30 hover:text-[#001f3f] text-gray-300"; 
+      // ✅ Hover text now turns navy blue (#001f3f)
 
   return (
-    <div className="h-full w-full flex flex-col bg-white">
-      <SidebarHeader className="border-b border-border/50 p-4">
-        <h2 className="text-lg font-bold">Hekto Furniture</h2>
-        <p className="text-xs text-muted-foreground">Admin Portal</p>
+    <div className="h-full w-full flex flex-col bg-[#1e293b] text-white">
+      {/* Header */}
+      <SidebarHeader className="border-b border-white/20 p-4">
+        <h2 className="text-lg font-bold text-white">Hekto Furniture</h2>
+        <p className="text-xs text-gray-400">Admin Portal</p>
       </SidebarHeader>
 
+      {/* Content */}
       <SidebarContent className="px-2 py-4">
         {menuItems.map((group, groupIndex) => (
           <SidebarGroup key={groupIndex} className="mb-6">
-            <SidebarGroupLabel className="text-xs font-semibold uppercase mb-2">
+            <SidebarGroupLabel className="text-xs font-semibold uppercase mb-2 text-gray-400">
               {group.title}
             </SidebarGroupLabel>
             <SidebarGroupContent>
@@ -92,7 +95,10 @@ export function AdminSidebar() {
                         <item.icon className="h-5 w-5" />
                         <span className="text-sm">{item.title}</span>
                         {item.badge && (
-                          <Badge variant="secondary" className="ml-auto text-xs">
+                          <Badge
+                            variant="secondary"
+                            className="ml-auto text-xs bg-blue-600 text-white"
+                          >
                             {item.badge}
                           </Badge>
                         )}
