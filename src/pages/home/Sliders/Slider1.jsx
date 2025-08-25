@@ -70,7 +70,7 @@ function SimpleSlider({ BannerData }) {
                 <p className="text-[12px] sm:text-sm py-[15px] leading-relaxed">
                   {el.description}
                 </p>
-                <Link to="shop" className="primary-btn">
+                <Link to="product" className="primary-btn">
                 Shop Now
               </Link>
                 

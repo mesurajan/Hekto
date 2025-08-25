@@ -11,7 +11,7 @@ import Shop from './pages/shop';
 import Contact from "./pages/Contact";
 import Blogs from "./pages/Blogs";
 import Cart from './pages/products/Cart'; 
-import ProtectedRoute from './components/ProtectedRoute'; // import your protected route
+import ProtectedRoute from './hoc/ProtectedRoutes'; // import your protected route
 import WhishList from './pages/products/WhishList';
 import AdminDashboard from './pages/admin/AdminDashboard';
 

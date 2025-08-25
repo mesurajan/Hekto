@@ -86,7 +86,7 @@ function Blogs() {
                       className="w-full h-8 px-2 border-2 focus:outline-none"
                       placeholder=" "
                         />
-                  <div className="flex items-center justify-center h-8 px-3 cursor-pointer bg-background">
+                  <div className="flex items-center justify-center h-8 px-3 cursor-pointer bg-primary">
                      <CiSearch color="white" size={20} />
                   </div>
               </div>

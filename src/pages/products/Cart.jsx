@@ -87,7 +87,7 @@ function Cart() {
             {/* Cart Actions */}
             <div className="flex gap-4 mt-4">
               <button
-                className="px-6 py-2 bg-background text-white rounded hover:bg-background"
+                className="px-6 py-2 bg-primary text-white rounded hover:bg-primary"
                 onClick={() => dispatch(clearCart())}
               >
                 Clear Cart
@@ -140,7 +140,7 @@ function Cart() {
                 className="w-full border px-2 py-1 mb-2 rounded"
               />
               <button
-               className="w-full py-2 bg-background text-white rounded transform transition-transform duration-300 hover:scale-102"
+               className="w-full py-2 bg-primary text-white rounded transform transition-transform duration-300 hover:scale-102"
                 onClick={handleCalculateShipping}
               >
                 Calculate Shipping

@@ -84,7 +84,7 @@ const handleAddToCart = (product) => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <div className="flex items-center justify-center h-10 px-3 cursor-pointer bg-background rounded-r-md">
+              <div className="flex items-center justify-center h-10 px-3 cursor-pointer bg-primary rounded-r-md">
                 <CiSearch color="white" size={20} />
               </div>
             </div>

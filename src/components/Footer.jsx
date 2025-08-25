@@ -91,7 +91,7 @@ function Footer() {
 
 
 
-     <div className='flex flex-row justify-center gap-6 py-2 mt-2 bg-background'>
+     <div className='flex flex-row justify-center gap-6 py-2 mt-2 bg-primary'>
       <div className='ml-2 text-white'>
         <p>&copy;Hekto -All Right Reserved .</p>
       </div>

@@ -83,7 +83,7 @@ function DisItem() {
 
                   {/* Button */}
                   <Link
-                    to="/shop"
+                    to="product"
                     className="inline-block px-6 py-3 mt-6 text-white transition rounded primary-btn hover:bg-background"
                   >
                     {slide.buttonText}

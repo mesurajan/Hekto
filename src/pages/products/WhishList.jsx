@@ -80,7 +80,7 @@ export default function WhishList() {
               <img
                 src={item.chairimage}
                 alt={item.title}
-                className="w-full md:w-1/3 h-90 md:h-120 object-cover bg-backgroundlite "
+                className="w-full md:w-1/4 h-90 md:h-80 object-cover bg-backgroundlite "
               />
 
               {/* Content */}
